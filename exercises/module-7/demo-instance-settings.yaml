@@ -1,0 +1,6 @@
+liferay-clarity-instance-settings-p4k2m6:
+  name: Mastering Liferay Instance Settings Cache Control
+  pid: com.liferay.document.library.web.internal.configuration.CacheControlConfiguration
+  cacheControl: public
+  maxAge: 10
+  type: instanceSettings
