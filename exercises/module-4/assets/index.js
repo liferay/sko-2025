@@ -21,43 +21,41 @@ const getCurrentUserId = async () => {
 };
 
 // Ticket component
-const Ticket = React.memo(({ ticket, onToggle, isOpen }) => {
-	return (
-		<div className="ticket-card" onClick={() => onToggle(ticket.id)}>
-			<div className="ticket-header">
-				<h3 className="ticket-subject">{ticket.subject}</h3>
-				<span className={`ticket-status ${ticket.priority?.key}`}>
-					{ticket.ticketStatus.name}
-				</span>
-			</div>
-			{isOpen && (
-				<div className="ticket-details">
-					<p>Description: {ticket.description}</p>
-					{ticket.attachment && (
-						<a
-							href={ticket.attachment.link.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="ticket-attachment"
-						>
-							View Attachment
-						</a>
-					)}
-					{ticket.relatedTickets && ticket.relatedTickets.length > 0 && (
-						<div className="related-tickets">
-							<h4>Related Tickets</h4>
-							{ticket.relatedTickets.map((related) => (
-								<div className="related-ticket-item" key={related.id}>
-									ID: {related.id} - {related.subject}
-								</div>
-							))}
-						</div>
-					)}
-				</div>
-			)}
+const Ticket = React.memo(({ ticket, onToggle, isOpen }) => (
+	<div className="ticket-card" onClick={() => onToggle(ticket.id)}>
+		<div className="ticket-header">
+			<h3 className="ticket-subject">{ticket.subject}</h3>
+			<span className={`ticket-status ${ticket.priority?.key}`}>
+				{ticket.ticketStatus.name}
+			</span>
 		</div>
-	);
-});
+		{isOpen && (
+			<div className="ticket-details">
+				<p>Description: {ticket.description}</p>
+				{ticket.attachment && (
+					<a
+						href={ticket.attachment.link.href}
+						target="_blank"
+						rel="noopener noreferrer"
+						className="ticket-attachment"
+					>
+						View Attachment
+					</a>
+				)}
+				{ticket.relatedTickets && ticket.relatedTickets.length > 0 && (
+					<div className="related-tickets">
+						<h4>Related Tickets</h4>
+						{ticket.relatedTickets.map((related) => (
+							<div className="related-ticket-item" key={related.id}>
+								ID: {related.id} - {related.subject}
+							</div>
+						))}
+					</div>
+				)}
+			</div>
+		)}
+	</div>
+));
 
 // Main component to display tabs and tickets list
 function TicketsList() {
@@ -72,7 +70,7 @@ function TicketsList() {
 			try {
 				setIsLoading(true);
 				const userId = await getCurrentUserId();
-				const response = await api('o/c/j3y7tickets');
+				const response = await api('o/c/tickets');
 				const data = await response.json();
 				const userTickets = (data.items || []).filter(
 					(ticket) => ticket.creator?.id === userId
@@ -140,16 +138,40 @@ function TicketsList() {
 // Custom Element class
 class CustomElement extends HTMLElement {
 	connectedCallback() {
-		ReactDOM.render(<TicketsList />, this);
+		// Ensure the React component is rendered only once
+		if (!this.rendered) {
+			// Create a container if it doesn't exist
+			const container = document.createElement('div');
+			container.id = 'tickets-root';
+			this.appendChild(container);
+
+			// Render the React component into the container
+			ReactDOM.render(<TicketsList />, container);
+			this.rendered = true;
+		}
 	}
 
 	disconnectedCallback() {
-		ReactDOM.unmountComponentAtNode(this);
+		// Clean up the React component when the element is removed
+		const container = this.querySelector('#tickets-root');
+		if (container) {
+			ReactDOM.unmountComponentAtNode(container);
+		}
+		this.rendered = false;
 	}
 }
 
-const ELEMENT_NAME = 'j3y7-tickets';
+// Define the custom element
+const ELEMENT_NAME = 'liferay-sample-custom-element-4';
 
 if (!customElements.get(ELEMENT_NAME)) {
 	customElements.define(ELEMENT_NAME, CustomElement);
 }
+
+// Automatically add the custom element to the page if not already present
+document.addEventListener('DOMContentLoaded', () => {
+	if (!document.querySelector(ELEMENT_NAME)) {
+		const customElement = document.createElement(ELEMENT_NAME);
+		document.body.appendChild(customElement);
+	}
+});
