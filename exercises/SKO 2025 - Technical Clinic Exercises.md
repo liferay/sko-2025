@@ -228,6 +228,20 @@ Here, you'll deploy the previous exercise's batch client extension to migrate Cl
    blade gw clean deploy
    ```
 
+   Alternatively,
+
+   **Unix-based systems**:
+
+   ```bash
+   ../../gradlew clean deploy
+   ```
+
+   **Windows**:
+
+   ```bash
+   ..\..\gradlew.bat clean deploy
+   ```
+
 1. Verify it deploys successfully.
 
    ```log
