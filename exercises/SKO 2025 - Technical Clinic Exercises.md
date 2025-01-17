@@ -100,20 +100,6 @@ Throughout the technical clinic, you'll use a local Liferay workspace for the ha
 
    This downloads and builds dependencies for running Liferay, including the Liferay server.
 
-   If you don't have Blade installed, run the correct `gradlew` command for your OS:
-
-   - **Unix-based systems**:
-
-      ```bash
-      ./gradlew initBundle
-      ```
-
-   - **Windows**:
-
-      ```bash
-      .\gradlew.bat initBundle
-      ```
-
 1. Use Blade to start your Liferay server:
 
    ```bash
@@ -226,20 +212,6 @@ Here, you'll deploy the previous exercise's batch client extension to migrate Cl
 
    ```bash
    blade gw clean deploy
-   ```
-
-   Alternatively,
-
-   **Unix-based systems**:
-
-   ```bash
-   ../../gradlew clean deploy
-   ```
-
-   **Windows**:
-
-   ```bash
-   ..\..\gradlew.bat clean deploy
    ```
 
 1. Verify it deploys successfully.
