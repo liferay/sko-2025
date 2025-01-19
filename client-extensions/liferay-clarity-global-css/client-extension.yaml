@@ -1,6 +1,0 @@
-assemble:
-    - include: static/*.css
-liferay-clarity-global-css:
-    name: Liferay Clarity Global CSS
-    type: globalCSS
-    url: global.*.css
