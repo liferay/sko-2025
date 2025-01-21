@@ -151,7 +151,7 @@ Here, you'll export Clarity's Contact Us object definition and explore its assoc
 
    **Note**: Many text editors and IDEs offer extensions to “prettify” JSON code, improving its readability for human comprehension.
 
-1. Examine its contents and observe [...].
+1. Examine the file's JSON elements and nested values.
 
 <!-- TODO: Determine what the user should explore in the file for the step above. -->
 
