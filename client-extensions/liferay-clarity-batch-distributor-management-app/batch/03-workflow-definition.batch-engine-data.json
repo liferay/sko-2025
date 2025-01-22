@@ -16,7 +16,7 @@
 				"#child-nodes": [
 					{
 						"#tag-name": "name",
-						"#value": "D4B8 Distribution Manager Approval"
+						"#value": "Distribution Manager Approval"
 					},
 					{
 						"#tag-name": "description",
@@ -273,7 +273,7 @@
 													},
 													{
 														"#tag-name": "name",
-														"#value": "D4B8 Business Development Manager"
+														"#value": "Business Development Manager"
 													}
 												],
 												"#tag-name": "role"
@@ -575,7 +575,7 @@
 													},
 													{
 														"#tag-name": "name",
-														"#value": "D4B8 Business Development Manager"
+														"#value": "Business Development Manager"
 													}
 												],
 												"#tag-name": "role"
@@ -665,7 +665,7 @@
 				"xsi:schemaLocation": "urn:liferay.com:liferay-workflow_7.4.0 http://www.liferay.com/dtd/liferay-workflow-definition_7_4_0.xsd"
 			},
 			"description": "An automated approval process that requires manager review when specified.",
-			"name": "D4B8 Distribution Manager Approval",
+			"name": "Distribution Manager Approval",
 			"nodes": [
 				{
 					"label": "Approved",
@@ -693,9 +693,9 @@
 					"type": "TASK"
 				}
 			],
-			"title": "D4B8 Distribution Manager Approval",
+			"title": "Distribution Manager Approval",
 			"title_i18n": {
-				"en_US": "D4B8 Distribution Manager Approval"
+				"en_US": "Distribution Manager Approval"
 			},
 			"transitions": [
 				{

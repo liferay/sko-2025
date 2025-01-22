@@ -1,14 +1,14 @@
 assemble:
     - from: batch
       into: batch
-liferay-clarity-batch:
-    name: Liferay Clarity Batch
-    oAuthApplicationHeadlessServer: liferay-clarity-batch-oauth-application-headless-server
+liferay-clarity-batch-distributor-management-app:
+    name: Liferay Clarity Batch Distributor Management App
+    oAuthApplicationHeadlessServer: liferay-clarity-batch-distributor-management-app-oauth-application-headless-server
     type: batch
-liferay-clarity-batch-oauth-application-headless-server:
+liferay-clarity-batch-distributor-management-app-oauth-application-headless-server:
     .serviceAddress: localhost:8080
     .serviceScheme: http
-    name: Liferay Clarity Batch OAuth Application Headless Server
+    name: Liferay Clarity Batch Distributor Management App OAuth Application Headless Server
     scopes:
         - Liferay.Headless.Admin.List.Type.everything
         - Liferay.Headless.Admin.User.everything

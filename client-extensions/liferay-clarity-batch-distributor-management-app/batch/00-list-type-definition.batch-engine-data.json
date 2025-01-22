@@ -11,7 +11,7 @@
 	},
 	"items": [
 		{
-			"externalReferenceCode": "D4B8_ANNUAL_PURCHASE_VOLUMES",
+			"externalReferenceCode": "ANNUAL_PURCHASE_VOLUMES",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "FIRST_TIER",
@@ -46,16 +46,16 @@
 					}
 				}
 			],
-			"name": "D4B8 Annual Purchase Volumes",
+			"name": "Annual Purchase Volumes",
 			"name_i18n": {
-				"en-US": "D4B8 Annual Purchase Volumes"
+				"en-US": "Annual Purchase Volumes"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_APPLICATION_STATES",
+			"externalReferenceCode": "APPLICATION_STATES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "APPROVED",
+					"externalReferenceCode": "APPLICATION_STATE_APPROVED",
 					"key": "approved",
 					"name": "Approved",
 					"name_i18n": {
@@ -63,7 +63,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "DENIED",
+					"externalReferenceCode": "APPLICATION_STATE_DENIED",
 					"key": "denied",
 					"name": "Denied",
 					"name_i18n": {
@@ -71,7 +71,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "ON_HOLD",
+					"externalReferenceCode": "APPLICATION_STATE_ON_HOLD",
 					"key": "onHold",
 					"name": "On Hold",
 					"name_i18n": {
@@ -79,7 +79,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "OPEN",
+					"externalReferenceCode": "APPLICATION_STATE_OPEN",
 					"key": "open",
 					"name": "Open",
 					"name_i18n": {
@@ -87,7 +87,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "UNDER_REVIEW",
+					"externalReferenceCode": "APPLICATION_STATE_UNDER_REVIEW",
 					"key": "underReview",
 					"name": "Under Review",
 					"name_i18n": {
@@ -95,7 +95,7 @@
 					}
 				},
 				{
-					"externalReferenceCode": "WITHDRAWN",
+					"externalReferenceCode": "APPLICATION_STATE_WITHDRAWN",
 					"key": "withdrawn",
 					"name": "Withdrawn",
 					"name_i18n": {
@@ -103,13 +103,13 @@
 					}
 				}
 			],
-			"name": "D4B8 Application States",
+			"name": "Application States",
 			"name_i18n": {
-				"en-US": "D4B8 Application States"
+				"en-US": "Application States"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_ASSESSMENT_SCORES",
+			"externalReferenceCode": "ASSESSMENT_SCORES",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "AVERAGE",
@@ -152,46 +152,13 @@
 					}
 				}
 			],
-			"name": "D4B8 Assessment Scores",
+			"name": "Assessment Scores",
 			"name_i18n": {
-				"en-US": "D4B8 Assessment Scores"
+				"en-US": "Assessment Scores"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_BUSINESS_TYPES",
-			"listTypeEntries": [
-				{
-					"externalReferenceCode": "FRANCHISE",
-					"key": "franchise",
-					"name": "Franchise",
-					"name_i18n": {
-						"en-US": "Franchise"
-					}
-				},
-				{
-					"externalReferenceCode": "INDEPENDENT",
-					"key": "independent",
-					"name": "Independent",
-					"name_i18n": {
-						"en-US": "Independent"
-					}
-				},
-				{
-					"externalReferenceCode": "OTHER",
-					"key": "other",
-					"name": "Other",
-					"name_i18n": {
-						"en-US": "Other"
-					}
-				}
-			],
-			"name": "D4B8 Business Types",
-			"name_i18n": {
-				"en-US": "D4B8 Business Types"
-			}
-		},
-		{
-			"externalReferenceCode": "D4B8_DECISIONS",
+			"externalReferenceCode": "DECISIONS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "APPROVED",
@@ -234,13 +201,13 @@
 					}
 				}
 			],
-			"name": "D4B8 Decisions",
+			"name": "Decisions",
 			"name_i18n": {
-				"en-US": "D4B8 Decisions"
+				"en-US": "Decisions"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_DISTRIBUTION_CHANNELS",
+			"externalReferenceCode": "DISTRIBUTION_CHANNELS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "E_COMMERCE",
@@ -267,13 +234,13 @@
 					}
 				}
 			],
-			"name": "D4B8 Distribution Channels",
+			"name": "Distribution Channels",
 			"name_i18n": {
-				"en-US": "D4B8 Distribution Channels"
+				"en-US": "Distribution Channels"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_DISTRIBUTION_REGIONS",
+			"externalReferenceCode": "DISTRIBUTION_REGIONS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "AFRICA",
@@ -356,86 +323,54 @@
 					}
 				}
 			],
-			"name": "D4B8 Distribution Regions",
+			"name": "Distribution Regions",
 			"name_i18n": {
-				"en-US": "D4B8 Distribution Regions"
+				"en-US": "Distribution Regions"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_ORDER_TYPES",
+			"externalReferenceCode": "PRODUCT_TYPES",
 			"listTypeEntries": [
 				{
-					"externalReferenceCode": "BULK_FORMATS",
-					"key": "bulkFormats",
-					"name": "Bulk Formats",
+					"externalReferenceCode": "PRODUCT_TYPE_CONTACTS",
+					"key": "contacts",
+					"name": "Contacts",
 					"name_i18n": {
-						"en-US": "Bulk Formats"
+						"en-US": "Contacts"
 					}
 				},
 				{
-					"externalReferenceCode": "NOT_SURE",
-					"key": "notSure",
-					"name": "Not Sure",
+					"externalReferenceCode": "PRODUCT_TYPE_EYEGLASSES",
+					"key": "eyeglasses",
+					"name": "Eyeglasses",
 					"name_i18n": {
-						"en-US": "Not Sure"
+						"en-US": "Eyeglasses"
 					}
 				},
 				{
-					"externalReferenceCode": "PRIVATE_LABELING",
-					"key": "privateLabeling",
-					"name": "Private Labeling",
+					"externalReferenceCode": "PRODUCT_TYPE_LENSES",
+					"key": "lenses",
+					"name": "Lenses",
 					"name_i18n": {
-						"en-US": "Private Labeling"
+						"en-US": "Lenses"
 					}
 				},
 				{
-					"externalReferenceCode": "WHOLESALE",
-					"key": "wholesale",
-					"name": "Wholesale",
+					"externalReferenceCode": "PRODUCT_TYPE_SUNGLASSES",
+					"key": "sunglasses",
+					"name": "Sunglasses",
 					"name_i18n": {
-						"en-US": "Wholesale"
+						"en-US": "Sunglasses"
 					}
 				}
 			],
-			"name": "D4B8 Order Types",
+			"name": "Product Types",
 			"name_i18n": {
-				"en-US": "D4B8 Order Types"
+				"en-US": "Product Types"
 			}
 		},
 		{
-			"externalReferenceCode": "D4B8_PRODUCT_LABELS",
-			"listTypeEntries": [
-				{
-					"externalReferenceCode": "LOCALIZED",
-					"key": "localized",
-					"name": "Localized",
-					"name_i18n": {
-						"en-US": "Localized"
-					}
-				},
-				{
-					"externalReferenceCode": "STANDARD_US",
-					"key": "standardUS",
-					"name": "Standard US",
-					"name_i18n": {
-						"en-US": "Standard US"
-					}
-				}
-			],
-			"name": "D4B8 Product Labels",
-			"name_i18n": {
-				"en-US": "D4B8 Product Labels"
-			}
-		},
-		{
-			"externalReferenceCode": "D4B8_PRODUCT_TYPES",
-			"name": "D4B8 Product Types",
-			"name_i18n": {
-				"en-US": "D4B8 Product Types"
-			}
-		},
-		{
-			"externalReferenceCode": "D4B8_RECOMMENDATIONS",
+			"externalReferenceCode": "RECOMMENDATIONS",
 			"listTypeEntries": [
 				{
 					"externalReferenceCode": "DECLINE_APPLICATION",
@@ -486,9 +421,9 @@
 					}
 				}
 			],
-			"name": "D4B8 Recommendations",
+			"name": "Recommendations",
 			"name_i18n": {
-				"en-US": "D4B8 Recommendations"
+				"en-US": "Recommendations"
 			}
 		}
 	]
