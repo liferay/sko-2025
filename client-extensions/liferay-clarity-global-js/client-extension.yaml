@@ -1,7 +1,0 @@
-assemble:
-    - from: build/static
-      into: static
-liferay-clarity-global-js:
-    name: Liferay Clarity Global JS
-    type: globalJS
-    url: global.*.js
