@@ -5,6 +5,6 @@
 		"baseTheme": "styled"
 	},
 	"main": "package.json",
-	"name": "@liferay/liferay-clarity-theme-css",
+	"name": "@liferay/clarity-theme",
 	"version": "0.0.0"
 }
