@@ -1,0 +1,4 @@
+clarity-global-js:
+    name: Clarity Global JS
+    type: globalJS
+    url: global.*.js
