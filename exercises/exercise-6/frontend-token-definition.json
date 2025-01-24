@@ -5,6 +5,89 @@
                 {
                     "frontendTokens": [
                         {
+                            "defaultValue": "#0b5fff",
+                            "editorType": "ColorPicker",
+                            "label": "Primary Button Background Color",
+                            "mappings": [
+                                {
+                                    "type": "cssVariable",
+                                    "value": "btn-primary-bg"
+                                }
+                            ],
+                            "name": "btnPrimaryBgColor",
+                            "type": "String"
+                        },
+                        {
+                            "defaultValue": "#ffffff",
+                            "editorType": "ColorPicker",
+                            "label": "Button Text Color",
+                            "mappings": [
+                                {
+                                    "type": "cssVariable",
+                                    "value": "btn-primary-color"
+                                }
+                            ],
+                            "name": "btnPrimaryTextColor",
+                            "type": "String"
+                        }
+                    ],
+                    "label": "Buttons",
+                    "name": "buttons"
+                },
+                {
+                    "frontendTokens": [
+                        {
+                            "defaultValue": "#ffffff",
+                            "editorType": "ColorPicker",
+                            "label": "Card Background Color",
+                            "mappings": [
+                                {
+                                    "type": "cssVariable",
+                                    "value": "card-bg"
+                                }
+                            ],
+                            "name": "cardBgColor",
+                            "type": "String"
+                        },
+                        {
+                            "defaultValue": "#e7e7ed",
+                            "editorType": "ColorPicker",
+                            "label": "Card Border Color",
+                            "mappings": [
+                                {
+                                    "type": "cssVariable",
+                                    "value": "card-border-color"
+                                }
+                            ],
+                            "name": "cardBorderColor",
+                            "type": "String"
+                        },
+                        {
+                            "defaultValue": "#272833",
+                            "editorType": "ColorPicker",
+                            "label": "Card Title Color",
+                            "mappings": [
+                                {
+                                    "type": "cssVariable",
+                                    "value": "card-title-color"
+                                }
+                            ],
+                            "name": "cardTitleColor",
+                            "type": "String"
+                        }
+                    ],
+                    "label": "Cards",
+                    "name": "cards"
+                }
+            ],
+            "label": "clarity-kids-components",
+            "name": "clarityKidsComponents"
+        },
+        {
+            "frontendTokenSets": [
+                {
+                    "frontendTokens": [
+                        {
                             "defaultValue": "#000",
                             "editorType": "ColorPicker",
                             "label": "color-brand-primary-darken-5",
@@ -7916,89 +7999,6 @@
             ],
             "label": "tabs",
             "name": "tabs"
-        },
-        {
-            "frontendTokenSets": [
-                {
-                    "frontendTokens": [
-                        {
-                            "defaultValue": "#0b5fff",
-                            "editorType": "ColorPicker",
-                            "label": "Primary Button Background Color",
-                            "mappings": [
-                                {
-                                    "type": "cssVariable",
-                                    "value": "btn-primary-bg"
-                                }
-                            ],
-                            "name": "btnPrimaryBgColor",
-                            "type": "String"
-                        },
-                        {
-                            "defaultValue": "#ffffff",
-                            "editorType": "ColorPicker",
-                            "label": "Button Text Color",
-                            "mappings": [
-                                {
-                                    "type": "cssVariable",
-                                    "value": "btn-primary-color"
-                                }
-                            ],
-                            "name": "btnPrimaryTextColor",
-                            "type": "String"
-                        }
-                    ],
-                    "label": "Buttons",
-                    "name": "buttons"
-                },
-                {
-                    "frontendTokens": [
-                        {
-                            "defaultValue": "#ffffff",
-                            "editorType": "ColorPicker",
-                            "label": "Card Background Color",
-                            "mappings": [
-                                {
-                                    "type": "cssVariable",
-                                    "value": "card-bg"
-                                }
-                            ],
-                            "name": "cardBgColor",
-                            "type": "String"
-                        },
-                        {
-                            "defaultValue": "#e7e7ed",
-                            "editorType": "ColorPicker",
-                            "label": "Card Border Color",
-                            "mappings": [
-                                {
-                                    "type": "cssVariable",
-                                    "value": "card-border-color"
-                                }
-                            ],
-                            "name": "cardBorderColor",
-                            "type": "String"
-                        },
-                        {
-                            "defaultValue": "#272833",
-                            "editorType": "ColorPicker",
-                            "label": "Card Title Color",
-                            "mappings": [
-                                {
-                                    "type": "cssVariable",
-                                    "value": "card-title-color"
-                                }
-                            ],
-                            "name": "cardTitleColor",
-                            "type": "String"
-                        }
-                    ],
-                    "label": "Cards",
-                    "name": "cards"
-                }
-            ],
-            "label": "Components",
-            "name": "components"
         }
     ]
 }
