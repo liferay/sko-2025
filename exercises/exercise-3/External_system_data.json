@@ -1,22 +1,14 @@
 {
-    "items": [
-      {
-        "email": "john.doe@example.com",
-        "name": "John Doe",
-        "state": "open",
-        "license": "1234567890",
-        "resale": "0987654321",
-        "taxId": "1011121314",
-        "contactEmail": "john.doe.contact@example.com",
-        "contactPhone": "555-123-4567",
-        "annualPurchase": "100000", 
-        "businessName": "Acme Corp", 
-        "businessPhone": "555-555-5555", 
-        "businessWebsite": "https://www.acmecorp.com",
-        "comments": "Some comments here", 
-        "distributionChannels": "retail,online", 
-        "distributionRegions": "north_america,europe",
-        "productsOfInterest": "productA,productB" 
-      }
-    ]
-  }
+  "items": [
+    {
+      "email": "john.doe@example.com",
+      "name": "John Doe",
+      "state": "open",
+      "license": "1234567890",
+      "resale": "0987654321",
+      "taxId": "1011121314",
+      "contactEmail": "john.doe.contact@example.com",
+      "contactPhone": "555-123-4567"
+    }
+  ]
+}
