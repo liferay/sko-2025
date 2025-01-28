@@ -25,6 +25,10 @@ To prepare your local Liferay bundle, you need to use the Blade CLI tool. The Bl
 
    This command will prepare the Liferay bundle and make it available in the `bundles` directory of your project.
 
+   If you find the error related to "No release properties found for product key...", you can use the following:
+```
+  blade gw --stop && blade gw initBundle -Dliferay.workspace.refresh.liferay.releases
+   ```
 4. **Verify the Bundle**: Once the command completes, check the `bundles` directory to ensure that the Liferay bundle has been set up correctly.
 
 By following these steps, you will have a local Liferay bundle ready for development and testing purposes. This setup is essential for running and deploying your Liferay modules effectively.
