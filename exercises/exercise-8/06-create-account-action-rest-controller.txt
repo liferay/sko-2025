@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Brian Wing Shun Chan
  * @author dnebing
  */
-@RequestMapping("/object/action/account")
+@RequestMapping("/distributor/mgmt/create-account")
 @RestController
 public class CreateAccountActionRestController extends BaseRestController {
 
