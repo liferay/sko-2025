@@ -1,0 +1,5 @@
+clarity-distributor-mgmt-create-account-object-action:
+    name: Clarity Distributor Mgmt Create Account Object Action
+    oAuth2ApplicationExternalReferenceCode: clarity-distributor-mgmt-action-oauth-application-user-agent
+    resourcePath: /distributor/mgmt/create-account
+    type: objectAction
