@@ -3,6 +3,7 @@
     {
       "email": "john.doe@example.com",
       "name": "John Doe",
+      "businessName":"John Doe",
       "state": "open",
       "license": "1234567890",
       "resale": "0987654321",
