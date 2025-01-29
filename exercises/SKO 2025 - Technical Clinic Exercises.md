@@ -147,15 +147,17 @@ Here, you'll export Clarity's Contact Us object definition and explore its assoc
 
    ![Click Actions for the Contact Us object and select Export Object Definition.](./pdf-images/exercise-2/01.png)
 
+1. Click on the *Contact Us* object and navigate to the *Fields* tab, identifying the currently included fields.
+
+   ![Identify the currently included fields in the Contact Us object.](./pdf-images/exercise-2/02.png)
+
 1. Open the downloaded `Object_Definition_ContactUs_[...].json` file in a text editor or IDE.
 
    **Note**: Many text editors and IDEs offer extensions to “prettify” JSON code, improving its readability for human comprehension.
 
 1. Examine the file's JSON elements and nested values.
 
-<!-- TODO: Determine what the user should explore in the file for the step above. -->
-
-Great! You have successfully exported one of Clarity's object definitions and have learned a bit about its JSON structure. While this exercise leveraged the Contact Us object to demonstrate the necessary process to prepare for creating a batch client extension, Clarity's development team has created a Ticketing app on a lower environment that they need to migrate to other environments. Next, you'll learn how to package the JSON for Clarity's Ticketing app into a batch client extension.
+Great! By successfully exporting one of Clarity’s object definitions and exploring its JSON structure, you've completed the crucial first steps for preparing a batch client extension. Next, you’ll learn how to package exported files from Clarity’s Distributor Management app into a batch client extension.
 
 ## Exercise 3: Creating Clarity's Ticketing Batch Client Extension
 
