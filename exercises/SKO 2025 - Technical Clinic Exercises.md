@@ -6,8 +6,9 @@
 
 * [Exercise 1: Setting Up the SKO Workspace](#exercise-1-setting-up-the-sko-workspace)
 * [Exercise 2: Exporting the Contact Us Object Definition](#exercise-2-exporting-the-contact-us-object-definition)
-* [Exercise 3: Creating and Deploying a Batch Client Extension](#exercise-3-creating-claritys-ticketing-batch-client-extension)
-* [Exercise 4: Deploying Clarity's Ticketing Application](#exercise-4-deploying-claritys-ticketing-application)
+* [Exercise 3a: Preparing Clarity's Distributor Management App Payload](#exercise-3a-preparing-claritys-distributor-management-app-payload)
+* [Exercise 3b: Configuring the Batch Client Extension](#exercise-3b-configuring-the-batch-client-extension)
+* [Exercise 3c: Deploying the Client Extension](#exercise-3c-deploying-the-client-extension)
 
 ## Exercise 1: Setting Up the SKO Workspace
 
@@ -157,58 +158,146 @@ Here, you'll export Clarity's Contact Us object definition and explore its assoc
 
 1. Examine the file's JSON elements and nested values.
 
-Great! By successfully exporting one of Clarity’s object definitions and exploring its JSON structure, you've completed the crucial first steps for preparing a batch client extension. Next, you’ll learn how to package exported files from Clarity’s Distributor Management app into a batch client extension.
+Great! By successfully exporting one of Clarity's object definitions and exploring its JSON structure, you've completed the crucial first steps for preparing a batch client extension. Next, you'll learn how to package exported files from Clarity's Distributor Management app into a batch client extension.
 
-## Exercise 3: Creating Clarity's Ticketing Batch Client Extension
+## Exercise 3a: Preparing Clarity's Distributor Management App Payload
 
-Here, you'll create a batch client extension containing the definition and related resources for Clarity's Ticketing app.
+Here, you'll package the Distributor Management app's exported resources into a client extension project and create a batch payload from the object definition file.
 
 1. Open a file explorer and navigate to the `exercises/exercise-3/` folder in your course workspace.
 
-1. Rename the `liferay-sample-batch` folder to `liferay-clarity-ticket-batch`.
+1. Rename the `liferay-sample-batch` folder to `clarity-distributor-mgmt-batch`.
 
    **Note**: The `liferay-sample-batch` client extension was downloaded from the [Liferay Sample Workspace](https://github.com/liferay/liferay-portal/tree/master/workspaces/liferay-sample-workspace). As a best practice, use examples within this workspace as the baseline for your own client extension projects, as this serves as the primary source of truth for client extension implementation.
 
-1. Navigate to the `liferay-clarity-ticket-batch/` folder.
+1. Within the `clarity-distributor-mgmt-batch/batch/` folder, delete the existing `.json` files.
 
-1. Delete all files within the `batch` folder.
+1. From the previous `exercise-3/` folder, move these files into the `clarity-distributor-mgmt-batch/batch/` folder:
 
-   This removes the sample client extension data to accommodate Clarity's Ticketing app content.
+   * `00-list-type-definition.batch-engine-data.json`
+   * `02-user-role.batch-engine-data.json`
+   * `03-workflow-definition.batch-engine-data.json`
+   * `04-notification-definition.batch-engine-data.json`
+   * `Object_Definitions.json`
 
-1. Open the `client-extension.yaml` file in a text editor or IDE.
+   These files contain all the resources for Clarity's Distributor Management app: the picklists, user roles, workflow, notification templates, and the object definitions.
 
-   You'll define the batch client extension configuration in this file.
+   **Note**: It's best practice to include a numeric prefix to each file name to determine the order in which they're imported upon deployment. This is useful when subsequent files require pre-populated dependencies from other files.
 
-<!-- Note: The next 3 steps are SKO-specific. -->
+1. Navigate to the `clarity-distributor-mgmt-batch/batch/` folder.
 
-1. From the `exercise-3` folder, open the `ticket-batch-configuration.txt` file.
+1. Rename the `Object_Definitions.json` file to `01-object-definition.batch-engine-data.json`.
 
-   This file contains the necessary configuration for the Ticketing app client extension.
+   This puts the object definition batch file in the second deployment position.
 
-1. Compare both files to spot the differences.
+1. From the `exercise-3/code-samples/` folder, open the `object-payload-configuration.txt` file and copy its content.
 
-1. Replace the `client-extension.yaml` file's existing content with the code in the `ticket-batch-configuration.txt` file.
+   This file contains the payload configuration block for the object definitions.
+
+1. Open the `clarity-distributor-mgmt-batch/batch/01-object-definition.batch-engine-data.json` file with a text editor or IDE.
+
+1. Paste the code snippet from the `object-payload-configuration.txt` file within the first opening curly brace (`{`), prior to the `items` block:
+
+   This defines the batch payload's configuration and specifies the object definitions as the data block.
+
+1. Your file should resemble this:
+
+   ```json
+   {
+      "configuration": {
+         "className": "com.liferay.object.admin.rest.dto.v1_0.ObjectDefinition",
+         "parameters": {
+            "containsHeaders": "true",
+            "createStrategy": "UPSERT",
+            "onErrorFail": "ON_ERROR_FAIL",
+            "updateStrategy": "UPDATE"
+         },
+         "taskItemDelegateName": "DEFAULT"
+      },
+      "items": [
+         {
+            "active": true,
+            "defaultLanguageId": "en_US",
+            "enableCategorization": true,
+            "enableIndexSearch": true,
+            "enableObjectEntryDraft": true,
+            "externalReferenceCode": "D4B8_DISTRIBUTOR_APPLICATION",
+            [...]
+            "titleObjectFieldName": "creator"
+         }
+      ]
+   }
+   ```
+
+   **Note**: Ensure the object definitions are under the `items` block as a valid JSON before proceeding.
 
 1. Save the file.
 
-1. From the `exercise-3` folder, move these files into the `liferay-clarity-ticket-batch/batch/` folder:
+Great! You've moved the Distributor Management app's resources into a client extension project and created a batch payload from the object definition file. Next, you'll define the `client-extension.yaml` file.
 
-   * `00-list-type-definition.batch-engine-data.json`
-   * `01-object-definition.batch-engine-data.json`
-   * `02-object-relationship.batch-engine-data.json`
-   * `03-object-entry.batch-engine-data.json`
+## Exercise 3b: Configuring the Batch Client Extension
 
-   With this, the client extension will create a picklist, the Ticket object definition, a relationship, and some Ticket entries upon deployment.
+Here, you'll define the structure, resources, and configurations needed to deploy and manage the batch client extension.
 
-1. Move the `liferay-clarity-ticket-batch/` folder into the `client-extensions/` folder of your course workspace.
+1. Within the `clarity-distributor-mgmt-batch/` project folder, open the `client-extension.yaml` with a text editor or IDE.
 
-Great! Now that you've fully configured the batch client extension and moved it to the appropriate workspace location, you can deploy it into your Liferay environment.
+1. Delete the file's existent content.
 
-## Exercise 4: Deploying Clarity's Ticketing Application
+1. From the `exercise-3/code-samples/` folder, open the `client-extension-assemble-block.txt` file and copy its content.
 
-Here, you'll deploy the previous exercise's batch client extension to migrate Clarity's Ticketing app.
+1. Paste the code snippet in the `client-extension.yaml` file you opened previously.
 
-1. Open a terminal and navigate to the `client-extensions/liferay-clarity-ticket-batch/` in your course workspace.
+   This adds the `assemble` block to specify which resources the client extension should package during the build process.
+
+1. Open the `client-extension-definition-block.txt` file in the `code-samples/` folder, copy the code snippet, and paste it in the `client-extension.yaml` file under the `assemble` block.
+
+   This adds the batch client extension definition for Clarity's Distributor Management app, including its name, the OAuth 2.0 server reference, and type.
+
+1. Open the `client-extension-server-block.txt` file in the `code-samples/` folder, copy the code snippet, and paste it in the `client-extension.yaml` file under the client extension definition block.
+
+   This adds an OAuth 2.0 headless server client extension for authorizing API calls with the necessary scopes for the batch client extension.
+
+   **Note**: To find the correct API scopes for your batch client extension, go into your Liferay instance's UI, open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab, and click *OAuth 2 Administration*. Select an OAuth 2.0 application from the list and go to the *Scopes* tab. This section displays all available Liferay API scopes.
+
+1. Your file should resemble this:
+
+   ```yaml
+   assemble:
+      - from: batch
+        into: batch
+   clarity-distributor-mgmt-batch:
+      name: Clarity Distributor Management Batch
+      oAuthApplicationHeadlessServer: clarity-distributor-mgmt-batch-oauth-application-headless-server
+      type: batch
+   clarity-distributor-mgmt-batch-oauth-application-headless-server:
+      .serviceAddress: localhost:8080
+      .serviceScheme: http
+      name: Clarity Distributor Management Batch OAuth Application Headless Server
+      scopes:
+         - Liferay.Headless.Admin.List.Type.everything
+         - Liferay.Headless.Admin.User.everything
+         - Liferay.Headless.Admin.Workflow.everything
+         - Liferay.Headless.Batch.Engine.everything
+         - Liferay.Notification.REST.everything
+         - Liferay.Object.Admin.REST.everything
+      type: oAuthApplicationHeadlessServer
+   ```
+
+1. Save the file.
+
+   With the client extension set up, you can now move it to the appropriate workspace location.
+
+1. Move the `clarity-distributor-mgmt-batch/` project folder into the `client-extensions/` folder of your course workspace.
+
+   **Note**: Copying and pasting the project will result in a deployment failure due to the duplicate client extension folders. To prevent this, move the project to the `client-extensions/` folder.
+
+Great! You've fully configured Clarity's Distributor Management batch client extension. Next, you'll deploy it into your Liferay environment.
+
+## Exercise 3c: Deploying the Client Extension
+
+Here, you'll deploy the batch client extension to add the Distributor Management app into your Liferay instance.
+
+1. Open a terminal and navigate to the `client-extensions/clarity-distributor-mgmt-batch/` in your course workspace.
 
 1. Run this command to build and deploy the client extension:
 
@@ -216,13 +305,33 @@ Here, you'll deploy the previous exercise's batch client extension to migrate Cl
    blade gw clean deploy
    ```
 
+   In your Liferay logs, you'll find various messages related to import tasks executed by the `BatchEngineImportTaskExecutorImpl` module. These import tasks correspond to the files within the `batch/` folder.
+
+1. Open your instance logs and search for a message similar to this:
+
+   ```log
+   [...] Started batch engine import task 904
+   ```
+
+   This informs you that the batch engine has started an import task with the assigned ID `904`.
+
+1. Search for another message similar to this:
+
+   ```log
+   [...] Finished batch engine import task 904 in 48ms
+   ```
+
+   This indicates that the import task with the ID `904` has finished.
+
+   **Note**: You can use the import task ID (e.g., `904`) to retrieve information from the Batch API for troubleshooting errors and unexpected behaviors. Explore this in more detail in the Mastering Liferay's Headless APIs (*Coming Soon*) course.
+
 1. Verify it deploys successfully.
 
    ```log
-   2025-01-13 14:33:19.157 INFO  [fileinstall-directory-watcher][BundleStartStopLogger:68] STARTED liferayclarityticketbatch_7.4.13 [1484]
+   INFO [fileinstall-directory-watcher][BundleStartStopLogger:68] STARTED claritydistributormgmtbatch_7.4.13 [1462]
    ```
 
-   Now that you've deployed the batch client extension, you can examine the migrated data model.
+   Now that you've deployed the batch client extension, you can examine the Distributor Management app.
 
 1. In your Liferay instance, sign in as the Clarity Admin user.
 
@@ -231,20 +340,42 @@ Here, you'll deploy the previous exercise's batch client extension to migrate Cl
 
 1. Open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab, and click *Objects*.
 
-1. Verify that the `Ticket` object definition is present.
+1. Verify these objects are present:
+
+   * Distributor Application
+   * Application Evaluation
 
 1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab and click *Picklists*.
 
-1. Verify that these picklists were created:
+1. Verify these picklists are present:
 
-   * Priorities
-   * Regions
-   * Resolutions
-   * Statuses
-   * Types
+   * Annual Purchase Volumes
+   * Application States
+   * Assessment Scores
+   * Decisions
+   * Distribution Channels
+   * Distribution Regions
+   * Product Types
+   * Recommendations
 
-1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab and click *Tickets*.
+1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab and click *Templates* under Notifications.
 
-1. Verify that the sample Ticket entries were created.
+1. Verify these notification templates are present:
 
-Great! You've successfully created and deployed the batch clarity extension to migrate Clarity's Ticketing app.
+   * Application Approved, Applicant, Email
+   * Application Denied, Applicant, Email
+   * Application Received, Applicant, Email
+   * Distributor Application Submitted, Admin, User
+
+1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab and click *Roles*.
+
+1. Verify these user roles are present:
+
+   * Business Development Manager
+   * Business Development Specialist
+
+1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Applications* tab and click *Process Builder*.
+
+1. Verify the Distributor Manager Approval workflow is present.
+
+Great! You've deployed the batch client extension and explored the Distributor Management app's content.

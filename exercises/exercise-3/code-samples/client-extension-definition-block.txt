@@ -1,0 +1,4 @@
+clarity-distributor-mgmt-batch:
+    name: Clarity Distributor Management Batch
+    oAuthApplicationHeadlessServer: clarity-distributor-mgmt-batch-oauth-application-headless-server
+    type: batch
