@@ -9,7 +9,7 @@
 		"webpack": "5.90.1",
 		"webpack-cli": "5.1.4"
 	},
-	"name": "@liferay/liferay-clarity-custom-element",
+	"name": "@liferay/clarity-ticketing-ui",
 	"private": true,
 	"scripts": {
 		"build": "webpack",

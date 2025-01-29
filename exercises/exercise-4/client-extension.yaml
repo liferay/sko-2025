@@ -1,11 +1,11 @@
 assemble:
     - from: build/static
       into: static
-liferay-clarity-custom-element:
-    friendlyURLMapping: liferay-clarity-custom-element
-    htmlElementName: liferay-clarity-custom-element
+clarity-ticketing-ui:
+    friendlyURLMapping: clarity-ticketing-ui
+    htmlElementName: clarity-ticketing-ui
     instanceable: false
-    name: Liferay Clarity Custom Element 
+    name: Clarity Ticketing UI
     portletCategoryName: category.client-extensions
     type: customElement
     urls:
