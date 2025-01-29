@@ -9,6 +9,7 @@
 * [Exercise 3a: Preparing Clarity's Distributor Management App Payload](#exercise-3a-preparing-claritys-distributor-management-app-payload)
 * [Exercise 3b: Configuring the Batch Client Extension](#exercise-3b-configuring-the-batch-client-extension)
 * [Exercise 3c: Deploying the Client Extension](#exercise-3c-deploying-the-client-extension)
+* [Exercise 4: Deploying Clarity's Ticket List Custom Element](#exercise-4-deploying-claritys-ticket-list-custom-element)
 
 ## Exercise 1: Setting Up the SKO Workspace
 
@@ -378,4 +379,55 @@ Here, you'll deploy the batch client extension to add the Distributor Management
 
 1. Verify the Distributor Manager Approval workflow is present.
 
-Great! You've deployed the batch client extension and explored the Distributor Management app's content.
+Great! You've deployed the batch client extension and explored the Distributor Management app's content. Next, you'll deploy a user interface for Clarity's Ticketing app.
+
+## Exercise 4: Deploying Clarity's Ticket List Custom Element
+
+Here, you'll deploy a custom element client extension for retrieving, filtering, and displaying ticket data.
+
+1. Open a file explorer and navigate to the `exercises/exercise-4/` folder in your course workspace.
+
+1. Rename the `liferay-sample-custom-element-4/` folder to `clarity-ticketing-ui`.
+
+1. Within the `clarity-ticketing-ui/` folder, delete all existing files.
+
+1. From the previous `exercise-4/` folder, move these files into the `clarity-ticketing-ui/` project folder:
+
+   * /assets/index.js
+   * /assets/style.css
+   * client-extension.dev.yaml
+   * client-extension.yaml
+   * package.json
+   * webpack.config.js
+
+   This adds all the necessary resources for Clarity’s Ticketing app UI to the custom element client extension. With this, you can move the project folder to the appropriate workspace location.
+
+1. Move the `clarity-ticketing-ui/` folder into the `client-extensions/` folder of your course workspace.
+
+1. Open a terminal and navigate to the `client-extensions/clarity-ticketing-ui/` folder.
+
+1. Run this command to build and deploy the custom element client extension:
+
+   ```bash
+   blade gw clean deploy
+   ```
+
+1. Verify that the client extension deploys successfully:
+
+   ```log
+   2025-01-28 11:50:59.076 INFO  [fileinstall-directory-watcher][BundleStartStopLogger:68] STARTED clarityticketingui_7.4.13 [1462]
+   ```
+
+   Now that you've deployed the custom element client extension, you can examine the Ticketing app UI.
+
+1. In your Liferay instance, open the *Site Menu* (![Site Menu](./pdf-images/icons/icon-product-menu.png)), click *Page Tree*, and select the *Tickets* page.
+
+1. Click *Edit* (![Site Menu](./pdf-images/icons/icon-edit.png)) to start editing the page.
+
+1. In the Fragments and Widgets search bar, search for `Clarity Ticketing UI`.
+
+1. Drag and drop the *Clarity Ticketing UI* widget to the page.
+
+1. Click *Publish*.
+
+Great! You’ve successfully deployed a custom element client extension for retrieving and displaying Clarity’s ticket data.
