@@ -1,0 +1,4 @@
+clarity-ticketing-ui:
+    baseURL: http://localhost:3000
+    urls:
+        - index.js
