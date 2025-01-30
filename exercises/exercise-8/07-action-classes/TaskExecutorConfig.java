@@ -1,4 +1,4 @@
-package com.claritysolutions.distributor.mgmt.actions;
+package com.clarityvisionsolutions.distributor.mgmt.actions;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
