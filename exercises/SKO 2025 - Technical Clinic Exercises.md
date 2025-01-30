@@ -432,7 +432,94 @@ Here, you'll deploy a custom element client extension for retrieving, filtering,
 
 Great! You've successfully deployed a custom element client extension for retrieving and displaying Clarity's ticket data. Next, you'll modify Clarity's current theme CSS client extension.
 
-## Exercise 5: TODO
+## Exercise 5: Updating Clarity's Frontend Tokens
+
+Here, you'll add a new frontend token definition to Clarity's current Theme CSS client extension. You'll also import a new font family to override the current one.
+
+1. Open a file explorer and navigate to the `exercises/exercise-5/` folder in your course workspace.
+
+1. Open the `frontend-token-definition.json` file and examine its contents.
+
+1. Move the `frontend-token-definition.json` file to the `client-extensions/clarity-theme/src/` folder in your course workspace.
+
+1. From the `clarity-theme/` folder, open the `client-extension.yaml` file in a text editor or IDE.
+
+1. Add this line above the name property:
+
+   ```yaml
+   frontendTokenDefinitionJSON: src/frontend-token-definition.json
+   ```
+
+   For example,
+
+   ```yaml
+   assemble:
+      - from: build/buildTheme/img
+         into: static/img
+      - from: assets
+         into: static
+   clarity-theme:
+      clayURL: css/clay.css
+      mainURL: css/main.css
+      frontendTokenDefinitionJSON: src/frontend-token-definition.json
+      name: Clarity Theme CSS
+      type: themeCSS
+   ```
+
+1. From the `client-extensions/clarity-theme/src/css/dialect/variables/` folder, open the `_color_scheme.scss` file and update the following variables by replacing their values with the following frontend token definition variables.
+
+   ```scss
+   --color-action-primary-default: var(--btn-primary-bg),
+	--color-action-primary-hover: var(--btn-primary-bg),
+	--color-action-primary-inverted: var(--btn-primary-color),
+	--color-brand-primary: var(--card-category-color),
+	--color-neutral-10: var(--card-title-color),
+   ```
+
+   This change maps the theme’s variables to the corresponding tokens in the `frontend-token-definitions.json` file.
+
+1. From the `client-extensions/clarity-theme/src/css/` folder, open the `_import.scss` file and append this snippet:
+
+   ```scss
+   @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+   * {
+      font-family: 'Roboto Slab', serif;
+   }
+   ```
+
+   This imports a font family from an external URL to override the current font.
+
+1. Save your changes.
+
+1. Open a terminal and navigate to the `client-extensions/clarity-theme/` project folder in your course workspace.
+
+1. Run this command to build and deploy the client extension:
+
+   ```bash
+   blade gw clean deploy
+   ```
+
+1. Verify it deploys successfully.
+
+   ```log
+   2025-01-24 14:08:34.676 INFO  [fileinstall-directory-watcher][BundleStartStopLogger:68] STARTED claritytheme_7.4.13 [1463]
+   ```
+
+1. In your Liferay instance, open the Site Menu (![Site Menu](./pdf-images/icons/icon-product-menu.png)), expand Design, and click Style Books.
+
+1. Select *Clarity Kids Style Book* to start editing it.
+
+1. In the dropdown menu, select *clarity-kids-components* and verify that the new tokens are available.
+
+1. Modify the colors using the available tokens and observe the real-time changes on your page.
+
+   ![Modify the colors using the available tokens.](./pdf-images/exercise-5/01.png)
+
+1. Return to the Home page and confirm that it stays with the same style.
+
+1. Also, confirm that the fonts were changed after you deployed the client extension.
+
+Great! You’ve used the theme CSS client extension to add new frontend tokens to Clarity’s style book. The client extension approach enables you to create distinct visual identities for sub-brands quickly and efficiently. Next, you’ll learn more about implementing custom functionality with Global JS client extensions.
 
 ## Exercise 6a: Creating an Accessibility Menu with a Global JS Client Extension
 
