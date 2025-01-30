@@ -400,7 +400,7 @@ Here, you'll deploy a custom element client extension for retrieving, filtering,
    * package.json
    * webpack.config.js
 
-   This adds all the necessary resources for Clarity’s Ticketing app UI to the custom element client extension. With this, you can move the project folder to the appropriate workspace location.
+   This adds all the necessary resources for Clarity's Ticketing app UI to the custom element client extension. With this, you can move the project folder to the appropriate workspace location.
 
 1. Move the `clarity-ticketing-ui/` folder into the `client-extensions/` folder of your course workspace.
 
@@ -430,4 +430,119 @@ Here, you'll deploy a custom element client extension for retrieving, filtering,
 
 1. Click *Publish*.
 
-Great! You’ve successfully deployed a custom element client extension for retrieving and displaying Clarity’s ticket data.
+Great! You've successfully deployed a custom element client extension for retrieving and displaying Clarity's ticket data. Next, you'll modify Clarity's current theme CSS client extension.
+
+## Exercise 5: TODO
+
+## Exercise 6a: Creating an Accessibility Menu with a Global JS Client Extension
+
+Here, you'll create and deploy an accessibility menu using a Global JS client extension.
+
+1. Open a file explorer and navigate to the `exercises/exercise-6/code-samples/` folder in your course workspace.
+
+1. Open the `01-assemble-block.txt` file with a text editor or IDE, and examine its content.
+
+   ```yaml
+   - from: build/static
+     into: static
+   ```
+
+   This file contains path properties for the `assemble` block in a `client-extension.yaml` file. The block specifies which resources the client extension should package during the build process and their output location.
+
+1. Copy this code snippet.
+
+1. Go to the `client-extensions/clarity-theme/` folder in your course workspace and open the `client-extension.yaml` file.
+
+1. Paste the code from the `01-assemble-block.txt` file at the bottom of the `assemble` block. For example,
+
+   ```yaml
+   assemble:
+      - from: build/buildTheme/img
+        into: static/img
+      - from: assets
+        into: static
+      - from: build/static
+        into: static
+   clarity-theme:
+   [...]
+   ```
+
+   **Note**: The order of the properties within the `assemble` block does not affect the configuration. However, ensure that the indentation matches the rest of the content.
+
+1. From the `exercise-6/code-samples/` folder, open the `02-definition-block.txt` file and examine its content.
+
+   ```yaml
+   clarity-global-js:
+      name: Clarity Global JS
+      type: globalJS
+      url: global.*.js
+   ```
+
+   This file contains the client extension definition block, specifying its name, type, and source URL for the build process.
+
+1. Copy this code snippet.
+
+1. Within the `client-extensions/clarity-theme/client-extension.yaml` file, paste the code after the `clarity-theme-favicon-light` definition block. For example,
+
+   ```yaml
+   [...]
+   clarity-theme-favicon-light:
+      name: Clarity Theme Favicon Light
+      type: themeFavicon
+      url: clarity-favicon-light.svg
+   clarity-global-js:
+      name: Clarity Global JS
+      type: globalJS
+      url: global.*.js
+   ```
+
+1. From the `exercise-6/assets/` folder, move the `global.js` file into the `client-extensions/clarity-theme/assets/` folder.
+
+1. Move the `webpack.config.js` file from the `exercise-6/` folder to `client-extensions/clarity-theme/`.
+
+1. Rename the `03-package.json` file from the `exercise-2/` folder to `package.json`.
+
+1. Replace the current `package.json` file in the `client-extensions/clarity-theme/` folder with the file from the previous step.
+
+1. Open a terminal and navigate to the `client-extensions/clarity-theme/` folder in your course workspace.
+
+1. Run this command to build and deploy the client extension:
+
+   ```bash
+   blade gw clean deploy
+   ```
+1. Verify it deploys successfully.
+
+   ```log
+   2025-01-24 14:08:34.676 INFO  [fileinstall-directory-watcher][BundleStartStopLogger:68] STARTED claritytheme_7.4.13 [1463]
+   ```
+
+Now that you've included the Global JS client extension in `clarity-theme` and redeployed it, you can implement the accessibility menu on Clarity’s website.
+
+## Exercise 6b: Applying the Global JS Client Extension to Clarity’s Home Page
+
+Here, you'll apply the Global JS client extension to Clarity’s home page.
+
+1. In your running Liferay instance, click *Edit* (![Site Menu](./pdf-images/icons/icon-edit.png)) to start editing the Home page.
+
+1. Click *Page Design Options* (![Page Design Options](./pdf-images/icons/icon-format.png)) on the left menu.
+
+1. Click *More Page Design Options* (![More Page Design Options](./pdf-images/icons/icon-cog3.png)).
+
+1. On the Design tab, under the Customization section, click the *JavaScript* tab.
+
+1. Click *Add JavaScript Client Extensions* and select *In Page Head* in the dropdown.
+
+   ![Click Add JavaScript Client Extensions and select In Page Head in the dropdown.](./pdf-images/exercise-6/01.png)
+
+1. Select the *Clarity Global JS* checkbox and click *Add*.
+
+1. Scroll to the bottom of the page and click *Save*.
+
+1. Return to the Home page and publish it.
+
+1. Click the *A+* button in the top-right corner of the page to increase the font size.
+
+   ![Click the A+ button in the top-right corner of the page to increase the font size.](./pdf-images/exercise-6/02.png)
+
+Great! Now that you've added the Global JS Client Extension and implemented Clarity’s accessibility menu to their Home page, you can control the page’s font size and apply a grayscale filter.
