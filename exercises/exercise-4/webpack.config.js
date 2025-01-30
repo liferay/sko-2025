@@ -18,7 +18,7 @@ module.exports = {
 	},
 	devtool: DEVELOPMENT ? 'source-map' : false,
 	entry: {
-		index: './assets/index.js',
+		index: './index.js',
 	},
 	externals: {
 		'react': 'react',
@@ -59,9 +59,6 @@ module.exports = {
 			module: true,
 		},
 		filename: WEBPACK_SERVE ? '[name].js' : '[name].[contenthash].js',
-		library: {
-			type: 'module',
-		},
 		path: path.resolve('build', 'static'),
 	},
 	plugins: [
