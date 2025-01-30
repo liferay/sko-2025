@@ -386,24 +386,116 @@ Great! You've deployed the batch client extension and explored the Distributor M
 
 ## Exercise 4: Deploying Clarity's Ticket List Custom Element
 
-Here, you'll deploy a custom element client extension for retrieving, filtering, and displaying ticket data.
+Here, you’ll explore and deploy a React application developed by Clarity’s team as a Custom Element Client Extension, designed to retrieve, filter, and display ticket data.
 
 1. Open a file explorer and navigate to the `exercises/exercise-4/` folder in your course workspace.
 
-1. Rename the `liferay-sample-custom-element-4/` folder to `clarity-ticketing-ui`.
+1. Rename the `react-app/` folder to `clarity-ticketing-ui`.
 
-1. Within the `clarity-ticketing-ui/` folder, delete all existing files.
+1. Within the `clarity-ticketing-ui/` folder, open the `webpack.config.js `file and paste the following code to the output block.
 
-1. From the previous `exercise-4/` folder, move these files into the `clarity-ticketing-ui/` project folder:
+   ```js
+      output: {
+      clean: true,
+      environment: {
+         dynamicImport: true,
+         module: true,
+      },
+      filename: WEBPACK_SERVE ? '[name].js' : '[name].[contenthash].js',
+      library: {
+         type: 'module',
+      },
+      path: path.resolve('build', 'static'),
+      },
+   ```
 
-   * /assets/index.js
-   * /assets/style.css
-   * client-extension.dev.yaml
-   * client-extension.yaml
-   * package.json
-   * webpack.config.js
+   This sets the `library` format, which specifies how the output bundle should be exposed.
 
-   This adds all the necessary resources for Clarity's Ticketing app UI to the custom element client extension. With this, you can move the project folder to the appropriate workspace location.
+1. From the `clarity-ticketing-ui/public` folder, open the `index.html` file in a text editor or IDE.
+
+1. Replace the `<root>` and `<section>` tags with `<clarity-ticketing-ui>`, the name of our custom element. For example,
+
+   ```html
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+         <meta charset="UTF-8" />
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         <title>Clarity Ticketing UI</title>
+      </head>
+      <body>
+         <clarity-ticketing-ui></clarity-ticketing-ui>
+         <script type="module" src="build/static/index.js"></script>
+      </body>
+      </html>
+   ```
+
+1. From the clarity-ticketing-ui/ folder, open the index.js file in a text editor or IDE and replace it with the following code.
+
+   ```js
+      import React, { useState, useEffect } from 'react';
+      import ReactDOM, { render } from 'react-dom';
+      import './assets/style.css';
+      import TicketsList from './assets/components/TicketsList';
+      import { HashRouter, Route, Routes } from "react-router-dom";
+      import App from './App';
+
+      // Custom Element class
+      class CustomElement extends HTMLElement {
+         connectedCallback() {
+            // Ensure the React component is rendered only once
+            if (!this.rendered) {
+                  // Create a container if it doesn't exist
+                  const container = document.createElement('div');
+                  container.id = 'tickets-root';
+                  this.appendChild(container);
+                  // Render the React component into the container
+                  ReactDOM.render(<TicketsList />, container);
+                  this.rendered = true;
+            }
+         }
+         disconnectedCallback() {
+            // Clean up the React component when the element is removed
+            const container = this.querySelector('#tickets-root');
+            if (container) {
+                  ReactDOM.unmountComponentAtNode(container);
+            }
+            this.rendered = false;
+         }
+      }
+      // Define the custom element
+      const ELEMENT_NAME = 'clarity-ticketing-ui';
+      if (!customElements.get(ELEMENT_NAME)) {
+         customElements.define(ELEMENT_NAME, CustomElement);
+      }
+      // Automatically add the custom element to the page if not already present
+      document.addEventListener('DOMContentLoaded', () => {
+         if (!document.querySelector(ELEMENT_NAME)) {
+            const customElement = document.createElement(ELEMENT_NAME);
+            document.body.appendChild(customElement);
+         }
+      });
+   ```
+
+   This replaces the default use of `render()` on the `ticket-root` div, leveraging a Web Component to define the React app as a reusable and self-contained custom element.
+
+1. Within the `clarity-ticketing-ui/` folder, create a `client-extension.yaml` file and add the following code to it.
+
+   ```yaml
+      assemble:
+         - from: build/static
+            into: static
+      clarity-ticketing-ui:
+         friendlyURLMapping: clarity-ticketing-ui
+         htmlElementName: clarity-ticketing-ui
+         instanceable: false
+         name: Clarity Ticketing UI
+         portletCategoryName: category.client-extensions
+         type: customElement
+         urls:
+            - index.*.js
+         useESM: true
+   ```
 
 1. Move the `clarity-ticketing-ui/` folder into the `client-extensions/` folder of your course workspace.
 
@@ -423,7 +515,11 @@ Here, you'll deploy a custom element client extension for retrieving, filtering,
 
    Now that you've deployed the custom element client extension, you can examine the Ticketing app UI.
 
-1. In your Liferay instance, open the *Site Menu* (![Site Menu](./pdf-images/icons/icon-product-menu.png)), click *Page Tree*, and select the *Tickets* page.
+1. In your Liferay instance, sign in as the Clarity Admin user.
+   - Username: `admin@clarityvisionsolutions.com`
+   - Password: `learn`
+
+1. Open the *Site Menu* (![Site Menu](./pdf-images/icons/icon-product-menu.png)), click *Page Tree*, and select the *Tickets* page.
 
 1. Click *Edit* (![Site Menu](./pdf-images/icons/icon-edit.png)) to start editing the page.
 
