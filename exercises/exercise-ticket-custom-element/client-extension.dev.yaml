@@ -1,4 +1,0 @@
-liferay-clarity-custom-element:
-    baseURL: http://localhost:3000
-    urls:
-        - index.js
