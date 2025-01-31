@@ -2,8 +2,6 @@ assemble:
   - from: dist
     into: static
 react-todo-mvc:
-  cssURLs:
-    - app.css
   friendlyURLMapping: react-todo-mvc
   htmlElementName: react-todo-mvc
   instanceable: false
