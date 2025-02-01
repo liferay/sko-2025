@@ -13,6 +13,9 @@
 * [Exercise 5: Updating Clarity's Frontend Tokens](#exercise-5-updating-claritys-frontend-tokens)
 * [Exercise 6a: Creating an Accessibility Menu with a Global JS Client Extension](#exercise-6a-creating-an-accessibility-menu-with-a-global-js-client-extension)
 * [Exercise 6b: Applying the Global JS Client Extension to Clarity's Home Page](#exercise-6b-applying-the-global-js-client-extension-to-claritys-home-page)
+* [Exercise 7a: Configuring the Microservice Client Extension](#exercise-7a-configuring-the-microservice-client-extension)
+* [Exercise 7b: Including Clarity’s Business Logic in the Client Extension](#exercise-7b-including-claritys-business-logic-in-the-client-extension)
+* [Exercise 7c: Adding and Executing the Account Setup Object Action](#exercise-7c-adding-and-executing-the-account-setup-object-action)
 
 ## Exercise 1: Setting Up the SKO Workspace
 
@@ -671,4 +674,386 @@ Here, you'll apply the Global JS client extension to Clarity's home page.
 
    ![Click the A+ button in the top-right corner of the page to increase the font size.](./pdf-images/exercise-6/02.png)
 
-Great! Now that you've added the Global JS Client Extension and implemented Clarity's accessibility menu to their Home page, you can control the page's font size and apply a grayscale filter.
+Great! Now that you've added the Global JS Client Extension and implemented Clarity's accessibility menu to their Home page, you can control the page's font size and apply a grayscale filter. Next, you'll implement a microservice client extension to offload account creation for Clarity’s approved distributor applications.
+
+## Exercise 7a: Configuring the Microservice Client Extension
+
+Here, you’ll set up the structure for Clarity’s microservice client extension handling distributor management actions.
+
+1. Open a file explorer and navigate to the `client-extensions/` folder in your course workspace.
+
+1. Create a new folder named `clarity-distributor-mgmt-action`.
+
+   You’ll use this folder to consolidate the microservice actions for Clarity’s distributor management app.
+
+   **Note**: It’s considered best practice to group all the components for a specific application within a single client extension project.
+
+1. From the `exercises/exercise-7/liferay-sample-etc-spring-boot/` folder, move these files to the `clarity-distributor-mgmt-action/` folder:
+
+   * `build.gradle`
+   * `Dockerfile`
+   * `LCP.json`
+
+   Now that you’ve included the basic configuration files for a client extension project leveraging Spring Boot, you can create the `client-extension.yaml` file.
+
+1. Within the `clarity-distributor-mgmt-action/` folder, create a new file named `client-extension.yaml`.
+
+1. Open the file with a text editor or IDE.
+
+1. From the `exercise-7/code-samples/` folder, open the `01-assemble-block.txt` file and examine its content.
+
+   ```yaml
+   assemble:
+      - fromTask: bootJar
+   ```
+
+   This `assemble` block configures the build process to trigger the `bootJar` task and include its output (a `.jar` file) in the resulting LUFFA.
+
+1. Copy this code snippet and paste it in the `client-extension.yaml` file.
+
+1. From the `exercise-7/code-samples/` folder, open the `02-oauth-definition-block.txt` file and examine its content.
+
+   ```yaml
+   clarity-distributor-mgmt-action-oauth-application-user-agent:
+      .serviceAddress: localhost:58081
+      .serviceScheme: http
+      name: Clarity Distributor Mgmt Action OAuth Application User Agent
+      scopes:
+         - Liferay.Headless.Admin.User.everything
+      type: oAuthApplicationUserAgent
+   ```
+
+   This definition block configures an OAuth headless user agent configuration client extension, specifying its name and required scope. This secures communication between the microservice and Liferay DXP.
+
+   **Note**: Including the `Liferay.Headless.Admin.User.everything` scope is crucial for the client extension to create new accounts for approved distributor users.
+
+1. Copy this code snippet and paste it in the `client-extension.yaml` file under the `assemble` block.
+
+1. From the `exercise-7/code-samples/` folder, open the `03-object-action-definition-block.txt` file and examine its content.
+
+   ```yaml
+   clarity-distributor-mgmt-action-object-action-account:
+      name: Clarity Distributor Mgmt Action Account
+      oAuth2ApplicationExternalReferenceCode: clarity-distributor-mgmt-action-oauth-application-user-agent
+      resourcePath: /distributor/mgmt/create-account
+      type: objectAction
+   ```
+
+1. Copy this code snippet and paste it in the `client-extension.yaml` file under the OAuth application definition block.
+
+1. Your file should resemble this:
+
+   ```yaml
+   assemble:
+      - fromTask: bootJar
+   clarity-distributor-mgmt-action-oauth-application-user-agent:
+      .serviceAddress: localhost:58081
+      .serviceScheme: http
+      name: Clarity Distributor Mgmt Action OAuth Application User Agent
+      scopes:
+         - Liferay.Headless.Admin.User.everything
+      type: oAuthApplicationUserAgent
+   clarity-distributor-mgmt-action-object-action-account:
+      name: Clarity Distributor Mgmt Action Account
+      oAuth2ApplicationExternalReferenceCode: clarity-distributor-mgmt-action-oauth-application-user-agent
+      resourcePath: /distributor/mgmt/create-account
+      type: objectAction
+   ```
+
+1. Save the file.
+
+Great! Now that you’ve configured the microservice client extension, you’ll include the source code for the distributor management app’s business logic.
+
+## Exercise 7b: Including Clarity’s Business Logic in the Client Extension
+
+Here, you’ll start creating the source code that includes the business logic for Clarity’s distributor management app.
+
+1. Within the `client-extensions/clarity-distributor-mgmt-action/` folder of the course workspace, create these three folders:
+
+   * `src/`
+   * `src/main/`
+   * `src/main/resources/`
+
+1. From the `exercises/exercise-7/liferay-sample-etc-spring-boot/src/main/resources/` folder, move these files into the `clarity-distributor-mgmt-action/src/main/resources/` folder:
+
+   * `application.properties`
+   * `application-default.properties`
+
+1. Open the `application.properties` file with a text editor or IDE, and examine its contents.
+
+   For this client extension, you’ll leverage the `spring.config.import` property to add additional property files and mark specific files as optional.
+
+1. Open the `application-default.properties` file, and examine its contents.
+
+   **Note**: The current content of this file is from the Liferay Sample Workspace. Next, you’ll need to update the `liferay.oauth.application.external.reference.codes` property with the client extension’s OAuth 2.0 application reference.
+
+1. For the `liferay.oauth.application.external.reference.codes` property, delete the existing reference codes.
+
+1. Configure the property with the value `clarity-distributor-mgmt-action-oauth-application-user-agent`.
+
+   Your file should resemble this:
+
+   ```
+   [...]
+   #
+   # OAuth
+   #
+
+   liferay.oauth.application.external.reference.codes=clarity-distributor-mgmt-action-oauth-application-user-agent
+
+   liferay.oauth.urls.excludes=/ready
+   [...]
+   ```
+
+1. Save the file.
+
+1. In `clarity-distributor-mgmt-action/src/main/`, create these folders for the Java source files:
+
+   * `java/`
+   * `java/com/`
+   * `java/com/clarityvisionsolutions/`
+   * `java/com/clarityvisionsolutions/distributor/`
+   * `java/com/clarityvisionsolutions/distributor/actions/`
+
+1. Navigate to the `clarity-distributor-mgmt-action/src/main/java/com/clarityvisionsolutions/distributor/actions/` folder and create three new files:
+
+   * `DistributorMgmtSpringBootApplication.java`
+   * `ReadyRestController.java`
+   * `CreateAccountActionRestController.java`
+
+1. Open each file with a text editor or IDE.
+
+1. From the `exercise-7/code-samples/` folder, open the `04-distributor-mgmt-spring-boot-application-class.txt` file and examine its content.
+
+   ```java
+   package com.clarityvisionsolutions.distributor.mgmt.actions;
+
+   import com.liferay.client.extension.util.spring.boot.ClientExtensionUtilSpringBootComponentScan;
+
+   import org.springframework.boot.SpringApplication;
+   import org.springframework.boot.autoconfigure.SpringBootApplication;
+   import org.springframework.context.annotation.Import;
+
+   @Import(ClientExtensionUtilSpringBootComponentScan.class)
+   @SpringBootApplication
+   public class DistributorMgmtSpringBootApplication {
+
+      public static void main(String[] args) {
+         SpringApplication.run(DistributorMgmtSpringBootApplication.class, args);
+      }
+
+   }
+   ```
+
+   This is a reusable, boilerplate piece of code that annotates the current Java class as a Spring Boot application and imports a Liferay provided class.
+
+1. Copy this code snippet and paste it in the `DistributorMgmtSpringBootApplication.java` file.
+
+1. Save the file.
+
+1. From the `exercise-7/code-samples/` folder, open the `05-ready-rest-controller.txt` file and examine its content.
+
+   ```java
+   package com.clarityvisionsolutions.distributor.mgmt.actions;
+
+   import com.liferay.client.extension.util.spring.boot.BaseRestController;
+
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RestController;
+
+   @RequestMapping("/ready")
+   @RestController
+   public class ReadyRestController extends BaseRestController {
+
+      @GetMapping
+      public String get() {
+         return "READY";
+      }
+
+   }
+   ```
+
+   This Java class is a boilerplate Spring Boot controller that checks if a service is running and ready to accept requests.
+
+1. Copy this code snippet and paste it in the `ReadyRestController.java` file.
+
+1. Save the file.
+
+1. From the `exercise-7/code-samples/` folder, open the `06-create-account-action-rest-controller.txt` file and examine its content.
+
+   ```java
+   package com.clarityvisionsolutions.distributor.mgmt.actions;
+
+   import com.liferay.client.extension.util.spring.boot.BaseRestController;
+
+   import org.apache.commons.logging.Log;
+   import org.apache.commons.logging.LogFactory;
+
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.http.HttpStatus;
+   import org.springframework.http.ResponseEntity;
+   import org.springframework.security.core.annotation.AuthenticationPrincipal;
+   import org.springframework.security.oauth2.jwt.Jwt;
+   import org.springframework.web.bind.annotation.PostMapping;
+   import org.springframework.web.bind.annotation.RequestBody;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RestController;
+
+   /**
+    * Invoked when a new user account has been created.
+   */
+   @RequestMapping("/distributor/mgmt/create-account")
+   @RestController
+   public class CreateAccountActionRestController extends BaseRestController {
+
+      @Autowired
+      public CreateAccountActionRestController(
+               UserCreatedRequestQueueManager queueManager) {
+
+         _queueManager = queueManager;
+      }
+
+      /**
+       * Invoked when a new user account has been created.
+       *
+       * @param jwt the JWT token
+       * @param json the user creation request in JSON format
+       * @return the response entity
+       * @throws Exception if an error occurs
+       */
+      @PostMapping
+      public ResponseEntity<String> post(
+               @AuthenticationPrincipal Jwt jwt, @RequestBody String json)
+               throws Exception {
+
+         log(jwt, _log, json);
+
+         // Create the request instance
+
+         UserCreatedRequest request = new UserCreatedRequest(json, jwt);
+
+         // Enqueue the request
+
+         _queueManager.enqueue(request);
+
+         // Return a success response
+
+         return new ResponseEntity<>(json, HttpStatus.OK);
+      }
+
+      private static final Log _log = LogFactory.getLog(
+               CreateAccountActionRestController.class);
+
+      private final UserCreatedRequestQueueManager _queueManager;
+
+   }
+   ```
+
+   This script follows an asynchronous approach for handling business logic for objects. It queues the object action’s request, handles it in a different thread named `_queueManager`, and sends a response back to Liferay.
+
+   **Note**: By not blocking the initial request and instead handling it asynchronously, you ensure performance is not compromised if the object action’s logic is slow.
+
+1. Copy this code snippet and paste it in the `CreateAccountActionRestController.java` file.
+
+1. Save the file.
+
+1. From the `exercises/exercise-7/action-classes/` folder, move these files into the `client-extension/clarity-distributor-mgmt-action/src/main/java/com/clarityvisionsolutions/distributor/actions` folder:
+
+   * `TaskExecutorConfig.java`
+   * `UserCreatedRequest.java`
+   * `UserCreatedRequestProcessorService.java`
+   * `UserCreatedRequestQueueManager.java`
+
+   These files contain the required resources for the object action to perform the asynchronous logic. This code leverages standard Spring Framework classes and libraries that are outside the scope of this course. To learn more, see official [Spring Framework](https://docs.spring.io/spring-framework/reference/) documentation.
+
+   Now that you’ve fully configured and populated the microservice client extension, you can deploy it to your Liferay instance.
+
+1. Open a terminal and navigate to the `client-extensions/clarity-distributor-mgmt-action/` folder in your course workspace.
+
+1. Run this command to build and deploy the client extension:
+
+   ```bash
+   blade gw clean deploy
+   ```
+
+1. Verify it deploys successfully.
+
+   ```log
+   2025-01-28 03:13:03.580 INFO  [Refresh Thread: Equinox Container: 643102d3-ba4b-4931-9c88-d9859cd1ce41][BundleStartStopLogger:68] STARTED claritydistributormgmtaction_7.4.13 [1473]
+   ```
+
+1. Run this command from the `client-extensions/clarity-distributor-mgmt-action/` folder to start the Spring Boot service:
+
+   ```bash
+   blade gw bootRun
+   ```
+
+1. When the application starts, go to http://localhost:58081/ready. If the application is ready for use, the page displays “READY”.
+
+Great! Now that you've deployed and started the microservice client extension, you can create the object action to trigger the account creation functionality.
+
+## Exercise 7c: Adding and Executing the Account Setup Object Action
+
+Here, you’ll add an object action that leverages the microservice client extension you deployed in the previous exercise. Then, you’ll create a new distributor application and execute the object action to create a new account.
+
+1. In your Liferay instance, open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab, and click *Objects*.
+
+1. Click the *Distributor Application* object.
+
+1. Go to the *Actions* tab and click *Add* (![Add Button](./pdf-images/icons/icon-add.png)).
+
+1. Enter these values in the Basic Info tab:
+
+   | Field        | Value                                                    |
+   |--------------|----------------------------------------------------------|
+   | Action Label | `Set Up Account`                                         |
+   | Action Name  | `setUpAccount`                                           |
+   | Description  | `Create a business account for an approved application.` |
+   | Active       | Yes                                                      |
+
+1. Go to the *Action Builder* tab and set these values:
+
+   | Field                   | Value                                                                                  |
+   |-------------------------|----------------------------------------------------------------------------------------|
+   | Trigger                 | Standalone                                                                             |
+   | Action                  | object-action-executor[function#clarity-distributor-mgmt-action-object-action-account] |
+   | Error Message > Message | Failed to set up the business account.                                                 |
+
+1. Click Save.
+
+   Now that you’ve created the Set Up Account object action, you can execute it to automatically create distributor accounts.
+
+1. Open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Applications* tab, and click *Distributor Applications*.
+
+1. Click *Add* (![Add Button](./pdf-images/icons/icon-add.png)) to start creating a new application.
+
+1. Fill out the fields with these values:
+
+   | Field                   | Value                              |
+   |-------------------------|------------------------------------|
+   | Applicant Name          | `Richard Howard`                   |
+   | Applicant Email Address | `richard.howard@howardsvision.com` |
+   | Business Name           | `Howard’s Vision`                  |
+   | Business Website URL    | `https://www.howardsvision.com`    |
+   | Business Phone Number   | `555-867-5309`                     |
+   | Business Tax ID Number  | `7618231`                          |
+   | Application State       | Open                               |
+
+1. Click *Save*.
+
+1. Go back to the Distributor Applications menu.
+
+1. Click *Actions* (![Actions Button](./pdf-images/icons/icon-actions.png)) for the entry you created and select *Set Up Account*.
+
+   Once triggered, the object action will call the Spring Boot application and execute the asynchronous logic you implemented earlier.
+
+1. Check the terminal window where you executed the `bootRun` command and see the Spring Boot application’s response.
+
+1. Open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab, and click *Accounts*.
+
+1. Verify that the Howard’s Vision account was created.
+
+1. Go to the *Users* tab and verify the applicant was associated with the account and assigned the Account Administrator role.
+
+Great! You’ve added custom business logic to Clarity’s distributor management app, offloading account creation to a microservice. By leveraging this microservice client extension, Clarity’s environment is better equipped to maximize performance when handling complex functionalities.
