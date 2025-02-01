@@ -380,7 +380,7 @@ Great! You've deployed the batch client extension and explored the distributor m
 
 ## Exercise 4: Deploying Clarity's Ticket List Custom Element
 
-Here, you’ll explore and deploy a React application developed by Clarity’s team as a Custom Element Client Extension, designed to retrieve, filter, and display ticket data.
+Here, you’ll explore and deploy a React application developed by Clarity’s team as a Custom Element client extension, designed to retrieve, filter, and display ticket data.
 
 1. Open a file explorer and navigate to the `exercises/exercise-4/` folder in your course workspace.
 
@@ -388,24 +388,23 @@ Here, you’ll explore and deploy a React application developed by Clarity’s t
 
    This is our application folder, which we will transform into a client extension.
 
-1. Go to the `exercises/exercise-4/lesson-codes` folder in your course workspace, open the `webpack.config.js` file, and copy its content.
-
-1. From the `clarity-ticketing-ui/public` folder, open the `index.html` file in a text editor or IDE.
+1. Go to the `exercises/exercise-4/code-samples` folder in your course workspace, open the `webpack.config.js` file, and copy its content.
 
 1. Paste the copied content into the `clarity-ticketing-ui/webpack.config.js` file.
 
-   Note that we’ve added the library format, which specifies how the output bundle should be exposed.
+   Note that we’ve added the `library` format, which specifies how the output bundle should be exposed.
 
 1. Save the file.
 
 1. From the `clarity-ticketing-ui/public` folder, open the `index.html` file in a text editor or IDE.
 
-1. Replace the `<root>` and the `<tickets-root>` tags with `<clarity-ticketing-ui>` tag, the name of our custom element.
-Go to the `exercises/exercise-4/lesson-codes/index.html` to see the correct implementation.
+1. Replace the `<root>` and the `<tickets-root>` tags with a `<clarity-ticketing-ui>` tag, the name of our custom element.
+
+   Go to the `exercises/exercise-4/code-samples/index.html` to see the correct implementation.
 
 1. Save the file.
 
-1. Go to the `exercises/exercise-4/lesson-codes/` folder in your course workspace, open the `index.js` file, and copy its content.
+1. Go to the `exercises/exercise-4/code-samples/` folder in your course workspace, open the `index.js` file, and copy its content.
 
 1. Paste the copied content into the `clarity-ticketing-ui/index.js` file.
 
@@ -413,29 +412,13 @@ Go to the `exercises/exercise-4/lesson-codes/index.html` to see the correct impl
 
 1. Save the file.
 
-1. Go to the `exercises/exercise-4/lesson-codes/` folder in your course workspace, open the `client-extension.yaml` file, and copy its contents.
-
-1. Within the `clarity-ticketing-ui/` folder, create a `client-extension.yaml` file and paste the copied code into it.
-
-1. Save the file.
+1. From the `exercises/exercise-4/code-samples/` folder in your course workspace, move the `client-extension.yaml` file to the `clarity-ticketing-ui/` folder.
 
 1. Move the `clarity-ticketing-ui/` folder into the client-extensions/ folder of your course workspace.
 
 1. Open a terminal and navigate to the `client-extensions/clarity-ticketing-ui/` folder.
 
 1. Run this command to build and deploy the custom element client extension:
-
-   ```bash
-   blade gw clean deploy
-   ```
-
-1. Verify that the client extension build has failed due to a duplicate client extension ID, `clarity-ticketing-ui`, existing in two locations within the workspace: `client-extensions/clarity-ticketing-ui` and `exercises/exercise-4/lesson-codes`.
-
-1. Navigate to `exercises/exercise-4/` and delete the `lesson-codes` folder.
-
-1. In your terminal, navigate back to the `client-extensions/clarity-ticketing-ui/` folder.
-
-1. Run the blade command again to build and deploy the custom element client extension:
 
    ```bash
    blade gw clean deploy
@@ -450,16 +433,19 @@ Go to the `exercises/exercise-4/lesson-codes/index.html` to see the correct impl
    Now that you've deployed the custom element client extension, you can examine the Ticketing app UI.
 
 1. In your Liferay instance, sign in as the Clarity Admin user.
-   - Username: `admin@clarityvisionsolutions.com`
-   - Password: `learn`
+
+   * Username: `admin@clarityvisionsolutions.com`
+   * Password: `learn`
 
 1. Open the *Site Menu* (![Site Menu](./pdf-images/icons/icon-product-menu.png)), click *Page Tree*, and select the *Tickets* page.
 
-1. Click *Edit* (![Site Menu](./pdf-images/icons/icon-edit.png)) to start editing the page.
+1. Click *Edit* (![Edit Button](./pdf-images/icons/icon-edit.png)) to start editing the page.
 
 1. In the Fragments and Widgets search bar, search for `Clarity Ticketing UI`.
 
 1. Drag and drop the *Clarity Ticketing UI* widget to the page.
+
+   ![Drag and drop the Clarity Ticketing UI widget to the page.](./pdf-images/exercise-4/01.png)
 
 1. Click *Publish*.
 
