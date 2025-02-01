@@ -184,10 +184,9 @@ Here, you'll package the Distributor Management app's exported resources into a 
    * `00-list-type-definition.batch-engine-data.json`
    * `02-user-role.batch-engine-data.json`
    * `03-workflow-definition.batch-engine-data.json`
-   * `04-notification-definition.batch-engine-data.json`
    * `Object_Definitions.json`
 
-   These files contain all the resources for Clarity's Distributor Management app: the picklists, user roles, workflow, notification templates, and the object definitions.
+   These files contain all the resources for Clarity's Distributor Management app: the picklists, user roles, workflow, and the object definitions.
 
    **Note**: It's best practice to include a numeric prefix to each file name to determine the order in which they're imported upon deployment. This is useful when subsequent files require pre-populated dependencies from other files.
 
@@ -285,7 +284,6 @@ Here, you'll define the structure, resources, and configurations needed to deplo
          - Liferay.Headless.Admin.User.everything
          - Liferay.Headless.Admin.Workflow.everything
          - Liferay.Headless.Batch.Engine.everything
-         - Liferay.Notification.REST.everything
          - Liferay.Object.Admin.REST.everything
       type: oAuthApplicationHeadlessServer
    ```
@@ -364,15 +362,6 @@ Here, you'll deploy the batch client extension to add the Distributor Management
    * Distribution Regions
    * Product Types
    * Recommendations
-
-1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab and click *Templates* under Notifications.
-
-1. Verify these notification templates are present:
-
-   * Application Approved, Applicant, Email
-   * Application Denied, Applicant, Email
-   * Application Received, Applicant, Email
-   * Distributor Application Submitted, Admin, User
 
 1. In the Global Menu (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab and click *Roles*.
 
