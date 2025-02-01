@@ -542,9 +542,9 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
 
 Great! You've used the theme CSS client extension to add new frontend tokens to Clarity's style book. The client extension approach enables you to create distinct visual identities for sub-brands quickly and efficiently. Next, you'll learn more about implementing custom functionality with Global JS client extensions.
 
-## Exercise 6a: Creating an Accessibility Menu with a Global JS Client Extension
+## Exercise 6a: Implementing an Accessibility Menu
 
-Here, you'll create and deploy an accessibility menu using a Global JS client extension.
+Here, you'll create and deploy an accessibility menu on Clarity's website using a global JS client extension.
 
 1. Open a file explorer and navigate to the `exercises/exercise-6/code-samples/` folder in your course workspace.
 
@@ -608,9 +608,11 @@ Here, you'll create and deploy an accessibility menu using a Global JS client ex
 
 1. Move the `webpack.config.js` file from the `exercise-6/` folder to `client-extensions/clarity-theme/`.
 
-1. Rename the `03-package.json` file from the `exercise-2/` folder to `package.json`.
+1. Rename the `03-package.json` file from the `exercise-6/` folder to `package.json`.
 
 1. Replace the current `package.json` file in the `client-extensions/clarity-theme/` folder with the file from the previous step.
+
+   **Note**: To avoid duplicate ID errors upon deploying the client extension, move the `package.json` file from the `exercises/exercise-6/` folder rather than copying.
 
 1. Open a terminal and navigate to the `client-extensions/clarity-theme/` folder in your course workspace.
 
@@ -625,11 +627,11 @@ Here, you'll create and deploy an accessibility menu using a Global JS client ex
    2025-01-24 14:08:34.676 INFO  [fileinstall-directory-watcher][BundleStartStopLogger:68] STARTED claritytheme_7.4.13 [1463]
    ```
 
-Now that you've included the Global JS client extension in `clarity-theme` and redeployed it, you can implement the accessibility menu on Clarity's website.
+Now that you've included the global JS client extension in `clarity-theme` and redeployed it, you can add the accessibility menu to Clarity's website.
 
 ## Exercise 6b: Applying the Global JS Client Extension to Clarity's Home Page
 
-Here, you'll apply the Global JS client extension to Clarity's home page.
+Here, you'll apply the global JS client extension to Clarity's home page.
 
 1. In your running Liferay instance, click *Edit* (![Site Menu](./pdf-images/icons/icon-edit.png)) to start editing the Home page.
 
@@ -653,7 +655,7 @@ Here, you'll apply the Global JS client extension to Clarity's home page.
 
    ![Click the A+ button in the top-right corner of the page to increase the font size.](./pdf-images/exercise-6/02.png)
 
-Great! Now that you've added the Global JS Client Extension and implemented Clarity's accessibility menu to their Home page, you can control the page's font size and apply a grayscale filter. Next, you'll implement a microservice client extension to offload account creation for Clarity’s approved distributor applications.
+Great! Now you can control the page's font size and apply a grayscale filter. Next, you'll implement a microservice client extension to offload account creation for Clarity’s approved distributor applications.
 
 ## Exercise 7a: Configuring the Microservice Client Extension
 
