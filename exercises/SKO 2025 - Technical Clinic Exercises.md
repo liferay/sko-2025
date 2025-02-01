@@ -11,7 +11,7 @@
 * [Exercise 3c: Deploying the Client Extension](#exercise-3c-deploying-the-client-extension)
 * [Exercise 4: Deploying Clarity's Ticket List Custom Element](#exercise-4-deploying-claritys-ticket-list-custom-element)
 * [Exercise 5: Updating Clarity's Frontend Tokens](#exercise-5-updating-claritys-frontend-tokens)
-* [Exercise 6a: Creating an Accessibility Menu with a Global JS Client Extension](#exercise-6a-creating-an-accessibility-menu-with-a-global-js-client-extension)
+* [Exercise 6a: Implementing an Accessibility Menu](#exercise-6a-implementing-an-accessibility-menu)
 * [Exercise 6b: Applying the Global JS Client Extension to Clarity's Home Page](#exercise-6b-applying-the-global-js-client-extension-to-claritys-home-page)
 * [Exercise 7a: Configuring the Microservice Client Extension](#exercise-7a-configuring-the-microservice-client-extension)
 * [Exercise 7b: Including Clarity's Business Logic in the Client Extension](#exercise-7b-including-claritys-business-logic-in-the-client-extension)
