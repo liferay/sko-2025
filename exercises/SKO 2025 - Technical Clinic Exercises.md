@@ -165,6 +165,8 @@ Here, you'll export Clarity's Contact Us object definition and explore its assoc
 
 1. Examine the file's JSON elements and nested values.
 
+   This contains the object data used to create a client extension payload, once added to an `items` array block.
+
 Great! By successfully exporting one of Clarity's object definitions and exploring its JSON structure, you've completed the crucial first steps for preparing a batch client extension. Next, you'll learn how to package exported files from Clarity's Distributor Management app into a batch client extension.
 
 ## Exercise 3a: Preparing Clarity's Distributor Management App Payload
