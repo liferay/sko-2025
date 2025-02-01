@@ -11,10 +11,10 @@
 * [Exercise 3c: Deploying the Client Extension](#exercise-3c-deploying-the-client-extension)
 * [Exercise 4: Deploying Clarity's Ticket List Custom Element](#exercise-4-deploying-claritys-ticket-list-custom-element)
 * [Exercise 5: Updating Clarity's Frontend Tokens](#exercise-5-updating-claritys-frontend-tokens)
-* [Exercise 6a: Creating an Accessibility Menu with a Global JS Client Extension](#exercise-6a-creating-an-accessibility-menu-with-a-global-js-client-extension)
+* [Exercise 6a: Implementing an Accessibility Menu](#exercise-6a-implementing-an-accessibility-menu)
 * [Exercise 6b: Applying the Global JS Client Extension to Clarity's Home Page](#exercise-6b-applying-the-global-js-client-extension-to-claritys-home-page)
 * [Exercise 7a: Configuring the Microservice Client Extension](#exercise-7a-configuring-the-microservice-client-extension)
-* [Exercise 7b: Including Clarity’s Business Logic in the Client Extension](#exercise-7b-including-claritys-business-logic-in-the-client-extension)
+* [Exercise 7b: Including Clarity's Business Logic in the Client Extension](#exercise-7b-including-claritys-business-logic-in-the-client-extension)
 * [Exercise 7c: Adding and Executing the Account Setup Object Action](#exercise-7c-adding-and-executing-the-account-setup-object-action)
 
 ## Exercise 1: Setting Up the SKO Workspace
@@ -380,7 +380,7 @@ Great! You've deployed the batch client extension and explored the distributor m
 
 ## Exercise 4: Deploying Clarity's Ticket List Custom Element
 
-Here, you’ll explore and deploy a React application developed by Clarity’s team as a Custom Element client extension, designed to retrieve, filter, and display ticket data.
+Here, you'll explore and deploy a React application developed by Clarity's team as a Custom Element client extension, designed to retrieve, filter, and display ticket data.
 
 1. Open a file explorer and navigate to the `exercises/exercise-4/` folder in your course workspace.
 
@@ -392,7 +392,7 @@ Here, you’ll explore and deploy a React application developed by Clarity’s t
 
 1. Paste the copied content into the `clarity-ticketing-ui/webpack.config.js` file.
 
-   Note that we’ve added the `library` format, which specifies how the output bundle should be exposed.
+   Note that we've added the `library` format, which specifies how the output bundle should be exposed.
 
 1. Save the file.
 
@@ -528,7 +528,7 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
 
 1. Select *Clarity Kids Style Book* to start editing it.
 
-1. In the right side bar’s dropdown menu, select *clarity-kids-components*.
+1. In the right side bar's dropdown menu, select *clarity-kids-components*.
 
 1. Verify that the new tokens are available.
 
@@ -655,19 +655,19 @@ Here, you'll apply the global JS client extension to Clarity's home page.
 
    ![Click the A+ button in the top-right corner of the page to increase the font size.](./pdf-images/exercise-6/02.png)
 
-Great! Now you can control the page's font size and apply a grayscale filter. Next, you'll implement a microservice client extension to offload account creation for Clarity’s approved distributor applications.
+Great! Now you can control the page's font size and apply a grayscale filter. Next, you'll implement a microservice client extension to offload account creation for Clarity's approved distributor applications.
 
 ## Exercise 7a: Configuring the Microservice Client Extension
 
-Here, you’ll set up the structure for Clarity’s microservice client extension handling distributor management actions.
+Here, you'll set up the structure for Clarity's microservice client extension handling distributor management actions.
 
 1. Open a file explorer and navigate to the `client-extensions/` folder in your course workspace.
 
 1. Create a new folder named `clarity-distributor-mgmt-action`.
 
-   You’ll use this folder to consolidate the microservice actions for Clarity’s distributor management app.
+   You'll use this folder to consolidate the microservice actions for Clarity's distributor management app.
 
-   **Note**: It’s considered best practice to group all the components for a specific application within a single client extension project.
+   **Note**: It's considered best practice to group all the components for a specific application within a single client extension project.
 
 1. From the `exercises/exercise-7/liferay-sample-etc-spring-boot/` folder, move these files to the `clarity-distributor-mgmt-action/` folder:
 
@@ -675,7 +675,7 @@ Here, you’ll set up the structure for Clarity’s microservice client extensio
    * `Dockerfile`
    * `LCP.json`
 
-   Now that you’ve included the basic configuration files for a client extension project leveraging Spring Boot, you can create the `client-extension.yaml` file.
+   Now that you've included the basic configuration files for a client extension project leveraging Spring Boot, you can create the `client-extension.yaml` file.
 
 1. Within the `clarity-distributor-mgmt-action/` folder, create a new file named `client-extension.yaml`.
 
@@ -743,11 +743,11 @@ Here, you’ll set up the structure for Clarity’s microservice client extensio
 
 1. Save the file.
 
-Great! Now that you’ve configured the microservice client extension, you’ll include the source code for the distributor management app’s business logic.
+Great! Now that you've configured the microservice client extension, you'll include the source code for the distributor management app's business logic.
 
-## Exercise 7b: Including Clarity’s Business Logic in the Client Extension
+## Exercise 7b: Including Clarity's Business Logic in the Client Extension
 
-Here, you’ll start creating the source code that includes the business logic for Clarity’s distributor management app.
+Here, you'll start creating the source code that includes the business logic for Clarity's distributor management app.
 
 1. Within the `client-extensions/clarity-distributor-mgmt-action/` folder of the course workspace, create these three folders:
 
@@ -762,11 +762,11 @@ Here, you’ll start creating the source code that includes the business logic f
 
 1. Open the `application.properties` file with a text editor or IDE, and examine its contents.
 
-   For this client extension, you’ll leverage the `spring.config.import` property to add additional property files and mark specific files as optional.
+   For this client extension, you'll leverage the `spring.config.import` property to add additional property files and mark specific files as optional.
 
 1. Open the `application-default.properties` file, and examine its contents.
 
-   **Note**: The current content of this file is from the Liferay Sample Workspace. Next, you’ll need to update the `liferay.oauth.application.external.reference.codes` property with the client extension’s OAuth 2.0 application reference.
+   **Note**: The current content of this file is from the Liferay Sample Workspace. Next, you'll need to update the `liferay.oauth.application.external.reference.codes` property with the client extension's OAuth 2.0 application reference.
 
 1. For the `liferay.oauth.application.external.reference.codes` property, delete the existing reference codes.
 
@@ -931,9 +931,9 @@ Here, you’ll start creating the source code that includes the business logic f
    }
    ```
 
-   This script follows an asynchronous approach for handling business logic for objects. It queues the object action’s request, handles it in a different thread named `_queueManager`, and sends a response back to Liferay.
+   This script follows an asynchronous approach for handling business logic for objects. It queues the object action's request, handles it in a different thread named `_queueManager`, and sends a response back to Liferay.
 
-   **Note**: By not blocking the initial request and instead handling it asynchronously, you ensure performance is not compromised if the object action’s logic is slow.
+   **Note**: By not blocking the initial request and instead handling it asynchronously, you ensure performance is not compromised if the object action's logic is slow.
 
 1. Copy this code snippet and paste it in the `CreateAccountActionRestController.java` file.
 
@@ -948,7 +948,7 @@ Here, you’ll start creating the source code that includes the business logic f
 
    These files contain the required resources for the object action to perform the asynchronous logic. This code leverages standard Spring Framework classes and libraries that are outside the scope of this course. To learn more, see official [Spring Framework](https://docs.spring.io/spring-framework/reference/) documentation.
 
-   Now that you’ve fully configured and populated the microservice client extension, you can deploy it to your Liferay instance.
+   Now that you've fully configured and populated the microservice client extension, you can deploy it to your Liferay instance.
 
 1. Open a terminal and navigate to the `client-extensions/clarity-distributor-mgmt-action/` folder in your course workspace.
 
@@ -976,7 +976,7 @@ Great! Now that you've deployed and started the microservice client extension, y
 
 ## Exercise 7c: Adding and Executing the Account Setup Object Action
 
-Here, you’ll add an object action that leverages the microservice client extension you deployed in the previous exercise. Then, you’ll create a new distributor application and execute the object action to create a new account.
+Here, you'll add an object action that leverages the microservice client extension you deployed in the previous exercise. Then, you'll create a new distributor application and execute the object action to create a new account.
 
 1. In your Liferay instance, open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab, and click *Objects*.
 
@@ -1003,7 +1003,7 @@ Here, you’ll add an object action that leverages the microservice client exten
 
 1. Click Save.
 
-   Now that you’ve created the Set Up Account object action, you can execute it to automatically create distributor accounts.
+   Now that you've created the Set Up Account object action, you can execute it to automatically create distributor accounts.
 
 1. Open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Applications* tab, and click *Distributor Applications*.
 
@@ -1015,7 +1015,7 @@ Here, you’ll add an object action that leverages the microservice client exten
    |-------------------------|------------------------------------|
    | Applicant Name          | `Richard Howard`                   |
    | Applicant Email Address | `richard.howard@howardsvision.com` |
-   | Business Name           | `Howard’s Vision`                  |
+   | Business Name           | `Howard's Vision`                  |
    | Business Website URL    | `https://www.howardsvision.com`    |
    | Business Phone Number   | `555-867-5309`                     |
    | Business Tax ID Number  | `7618231`                          |
@@ -1029,12 +1029,12 @@ Here, you’ll add an object action that leverages the microservice client exten
 
    Once triggered, the object action will call the Spring Boot application and execute the asynchronous logic you implemented earlier.
 
-1. Check the terminal window where you executed the `bootRun` command and see the Spring Boot application’s response.
+1. Check the terminal window where you executed the `bootRun` command and see the Spring Boot application's response.
 
 1. Open the *Global Menu* (![Global Menu](./pdf-images/icons/icon-applications-menu.png)), go to the *Control Panel* tab, and click *Accounts*.
 
-1. Verify that the Howard’s Vision account was created.
+1. Verify that the Howard's Vision account was created.
 
 1. Go to the *Users* tab and verify the applicant was associated with the account and assigned the Account Administrator role.
 
-Great! You’ve added custom business logic to Clarity’s distributor management app, offloading account creation to a microservice. By leveraging this microservice client extension, Clarity’s environment is better equipped to maximize performance when handling complex functionalities.
+Great! You've added custom business logic to Clarity's distributor management app, offloading account creation to a microservice. By leveraging this microservice client extension, Clarity's environment is better equipped to maximize performance when handling complex functionalities.
