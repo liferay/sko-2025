@@ -463,7 +463,7 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
 
 1. From the `clarity-theme/` folder, open the `client-extension.yaml` file in a text editor or IDE.
 
-1. Add this line above the name property:
+1. Add this line above the `name` property under the `clarity-theme` definition block:
 
    ```yaml
    frontendTokenDefinitionJSON: src/frontend-token-definition.json
@@ -497,7 +497,7 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
 
    This change maps the theme's variables to the corresponding tokens in the `frontend-token-definitions.json` file.
 
-1. From the `client-extensions/clarity-theme/src/css/` folder, open the `_import.scss` file and append this snippet:
+1. From the `client-extensions/clarity-theme/src/css/` folder, open the `_imports.scss` file and append this snippet:
 
    ```scss
    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
@@ -528,7 +528,9 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
 
 1. Select *Clarity Kids Style Book* to start editing it.
 
-1. In the dropdown menu, select *clarity-kids-components* and verify that the new tokens are available.
+1. In the right side bar’s dropdown menu, select *clarity-kids-components*.
+
+1. Verify that the new tokens are available.
 
 1. Modify the colors using the available tokens and observe the real-time changes on your page.
 
@@ -536,7 +538,7 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
 
 1. Return to the Home page and confirm that it stays with the same style.
 
-1. Also, confirm that the fonts were changed after you deployed the client extension.
+1. Confirm that the fonts were changed after you deployed the client extension.
 
 Great! You've used the theme CSS client extension to add new frontend tokens to Clarity's style book. The client extension approach enables you to create distinct visual identities for sub-brands quickly and efficiently. Next, you'll learn more about implementing custom functionality with Global JS client extensions.
 
