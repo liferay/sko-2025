@@ -483,6 +483,7 @@ Here, you'll add a new frontend token definition to Clarity's current Theme CSS 
       frontendTokenDefinitionJSON: src/frontend-token-definition.json
       name: Clarity Theme CSS
       type: themeCSS
+   [...]
    ```
 
 1. From the `client-extensions/clarity-theme/src/css/dialect/variables/` folder, open the `_color_scheme.scss` file and update the following variables by replacing their values with the following frontend token definition variables.
@@ -604,15 +605,21 @@ Here, you'll create and deploy an accessibility menu on Clarity's website using 
       url: global.*.js
    ```
 
+1. Save the file.
+
 1. From the `exercise-6/assets/` folder, move the `global.js` file into the `client-extensions/clarity-theme/assets/` folder.
 
 1. Move the `webpack.config.js` file from the `exercise-6/` folder to `client-extensions/clarity-theme/`.
 
-1. Rename the `03-package.json` file from the `exercise-6/` folder to `package.json`.
+1. From the `exercise-6/code-samples/` folder, open the `03-package-json.txt` file and examine its content.
 
-1. Replace the current `package.json` file in the `client-extensions/clarity-theme/` folder with the file from the previous step.
+1. Copy this code snippet.
 
-   **Note**: To avoid duplicate ID errors upon deploying the client extension, move the `package.json` file from the `exercises/exercise-6/` folder rather than copying.
+1. Within the `client-extensions/clarity-theme/` folder, open the `package.json` file and delete its existent content.
+
+1. Paste the code from the `03-package-json.txt` file within the `package.json` file.
+
+   Great! Now that you've fully configured the global JS client extension, you can deploy it to your Liferay instance.
 
 1. Open a terminal and navigate to the `client-extensions/clarity-theme/` folder in your course workspace.
 

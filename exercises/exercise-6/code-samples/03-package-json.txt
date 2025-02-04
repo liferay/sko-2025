@@ -8,7 +8,7 @@
 	"liferayDesignPack": {
 		"baseTheme": "styled"
 	},
-	"main": "03-package.json",
+	"main": "package.json",
 	"name": "@liferay/clarity-theme",
 	"private": true,
 	"scripts": {
